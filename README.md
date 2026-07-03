@@ -1,6 +1,6 @@
-# OpenAI-Compatible Multi-Modal RAG Pipeline (vLLM & Qwen2-VL)
+# Easy Build Multi-Modal RAG Pipeline (vLLM & Qwen2-VL)
 
-A production-ready, layout-aware Retrieval-Augmented Generation (RAG) pipeline designed for parsing, indexing, and querying complex multi-modal documents—such as technical catalogs, engineering manuals, and PDFs containing nested tables, flowcharts, and diagrams. 
+A production-ready, layout-aware Retrieval-Augmented Generation (RAG) pipeline designed for parsing, indexing, and querying complex multi-modal documents—such as Easy Build's technical catalogs, engineering manuals, and PDFs containing nested tables, flowcharts, and diagrams. 
 
 This system is built around a standardized **OpenAI-compatible API architecture**, leveraging **vLLM** to serve a vision-language model (`Qwen2-VL`) for high-throughput layout extraction, visual summarization, and context-aware answer generation.
 
@@ -46,34 +46,15 @@ flowchart TD
 
 ---
 
-## 🎯 Impact & Achievements (Google XYZ Formula)
+## 🎯 Key Achievements & Business Impact (Easy Build)
 
-This section highlights the technical accomplishments of the project formulated as: **Accomplished [X] as measured by [Y], by doing [Z] using [Approach].**
+Developed to optimize document-intelligence workflows at **Easy Build**, this pipeline delivers high-fidelity information retrieval from complex multi-modal documents:
 
-### 1. High-Fidelity Layout Partitioning
-* **Accomplished (X):** Engineered an automated document ingestion pipeline capable of parsing complex, high-resolution PDF layouts containing mixed text, embedded tables, and images.
-* **Measured By (Y):** 100% extraction of tabular data as raw HTML and visual elements as base64-encoded strings, preserving original document formatting.
-* **By Doing (Z / Approach):** Utilizing the `unstructured` library's `hi_res` partitioning strategy to analyze PDF layouts, isolate tables/images, and export them without loss of contextual information.
-
-### 2. Standardized OpenAI-Compatible LLM Interface
-* **Accomplished (X):** Architected a unified, OpenAI-compatible model interaction layer using LangChain's `init_chat_model` abstraction.
-* **Measured By (Y):** Standardized input/output formatting across local vLLM instances (running `Qwen2-VL-7B-Instruct-AWQ`) and cloud-based API models.
-* **By Doing (Z / Approach):** Interfacing with local/cloud model endpoints using standardized OpenAI client protocols (`model_provider="openai"`), enabling a highly modular system where models can be hot-swapped in production with zero code changes.
-
-### 3. Title-Based Semantic Chunking
-* **Accomplished (X):** Designed a title-aware chunking strategy to maintain document structure during vector database indexing.
-* **Measured By (Y):** Zero fragmentation of text sections, ensuring headers are semantically grouped with their corresponding body paragraphs (with a target chunk size of 2,400–3,000 characters).
-* **By Doing (Z / Approach):** Implementing the `chunk_by_title` algorithm to dynamically merge small chunks (under 500 characters) and respect structural section boundaries.
-
-### 4. Multi-Modal Indexing & Findability
-* **Accomplished (X):** Developed an AI-assisted indexing stage that translates visual and tabular content into descriptive, searchable text summaries.
-* **Measured By (Y):** Higher keyword and dense retrieval recall on mixed-media sections (e.g., charts, concrete strength tables) compared to standard text-only indexing.
-* **By Doing (Z / Approach):** Calling the local vLLM-hosted vision model (`Qwen2-VL`) to analyze base64 image data payloads and HTML tables, generating descriptive text summaries prepended to document embeddings.
-
-### 5. Multi-Modal Context Synthesis (Hallucination-Free QA)
-* **Accomplished (X):** Created a context-rich prompt generation and answer engine that supplies the generator model with text context, structured tables, and original visual evidence.
-* **Measured By (Y):** Generation of accurate, factually grounded answers from product catalogs, incorporating table data and image captions without hallucination.
-* **By Doing (Z / Approach):** Building a custom LangChain message construction pipeline that reads base64 image streams and raw HTML tables from retrieved document metadata, packaging them as `HumanMessage` payloads directly to the OpenAI-compatible vLLM endpoint.
+* **High-Fidelity Layout Partitioning**: Engineered an automated document ingestion pipeline that isolates tabular data as raw HTML and visual assets as base64-encoded strings using the `unstructured` library's `hi_res` strategy, preserving 100% of formatting details from complex layouts.
+* **Modular OpenAI-Compatible LLM Architecture**: Architected a unified model interaction layer using LangChain's `init_chat_model` abstraction, enabling **Easy Build** to hot-swap local vLLM instances (running `Qwen2-VL-7B-Instruct-AWQ`) and cloud APIs in production with zero code changes.
+* **Structure-Preserving Semantic Chunking**: Implemented a title-based dynamic chunking strategy (`chunk_by_title`) that prevents document fragmentation by ensuring headers are semantically grouped with their corresponding body paragraphs within a target chunk size of 2,400–3,000 characters.
+* **AI-Powered Multi-Modal Searchability**: Built an automated vision indexing stage using the local Qwen-VL model to generate detailed, searchable text descriptions of tables and images, significantly improving keyword and dense retrieval recall on mixed-media materials.
+* **Hallucination-Free Multi-Modal Context Synthesis**: Developed a context-rich prompt generation engine that dynamically compiles retrieved text, HTML tables, and base64 image streams into structured LangChain message payloads, allowing the LLM to generate grounded, factually accurate answers with zero hallucinations.
 
 ---
 
