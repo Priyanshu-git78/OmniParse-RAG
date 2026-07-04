@@ -1,0 +1,2986 @@
+[
+  {
+    "question_id": "Q-EXACT-001",
+    "question": "What is the status and issue associated with order EB-ORD-2026-78431?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "04_supply_chain_and_warehouses",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-002",
+    "question": "What is the issue with order EB-ORD-2026-92104 and what is its status?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "04_supply_chain_and_warehouses",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-003",
+    "question": "What is the SKU code, brand, and base price for OPC 53 Grade UltraStrong cement?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "03_products_and_catalog",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-004",
+    "question": "What is the specs and packaging for TMT Rebar Fe-550D 12mm?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "03_products_and_catalog",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-005",
+    "question": "Who is the manager of the Noida Warehouse (WH-NOI-01) and what is its location?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "04_supply_chain_and_warehouses",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-006",
+    "question": "What is the capacity and manager of Bengaluru Fulfillment Hub (WH-BLR-03)?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "04_supply_chain_and_warehouses",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-007",
+    "question": "What is the compliance contact hotline number under the whistleblower policy POL-LEG-015?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "09_policies_and_compliance",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-008",
+    "question": "What is the dedicated compliance reporting email address for integrity helpline issues?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": "09_policies_and_compliance",
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-009",
+    "question": "What is the base price and safety stock level for product SKU EB-PNT-3002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-PNT-3002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-010",
+    "question": "What is the base price and safety stock level for product SKU EB-WPF-4001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-WPF-4001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-011",
+    "question": "What is the base price and safety stock level for product SKU EB-CEM-1001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-CEM-1001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-012",
+    "question": "What is the base price and safety stock level for product SKU EB-CEM-1002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-CEM-1002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-013",
+    "question": "What is the base price and safety stock level for product SKU EB-STL-2001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-STL-2001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-014",
+    "question": "What is the base price and safety stock level for product SKU EB-STL-2002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-STL-2002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-015",
+    "question": "What is the base price and safety stock level for product SKU EB-TILE-6001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-TILE-6001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-016",
+    "question": "What is the base price and safety stock level for product SKU EB-TILE-6010?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-TILE-6010"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-017",
+    "question": "What is the base price and safety stock level for product SKU EB-TILE-6100?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-TILE-6100"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-018",
+    "question": "What is the base price and safety stock level for product SKU EB-PNT-3001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-PNT-3001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-019",
+    "question": "What is the base price and safety stock level for product SKU EB-PNT-3002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-PNT-3002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-020",
+    "question": "What is the base price and safety stock level for product SKU EB-WPF-4001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-WPF-4001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-021",
+    "question": "What is the base price and safety stock level for product SKU EB-CEM-1001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-CEM-1001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-022",
+    "question": "What is the base price and safety stock level for product SKU EB-CEM-1002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-CEM-1002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-023",
+    "question": "What is the base price and safety stock level for product SKU EB-STL-2001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-STL-2001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-024",
+    "question": "What is the base price and safety stock level for product SKU EB-STL-2002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-STL-2002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-025",
+    "question": "What is the base price and safety stock level for product SKU EB-TILE-6001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-TILE-6001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-026",
+    "question": "What is the base price and safety stock level for product SKU EB-TILE-6010?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-TILE-6010"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-027",
+    "question": "What is the base price and safety stock level for product SKU EB-TILE-6100?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-TILE-6100"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-028",
+    "question": "What is the base price and safety stock level for product SKU EB-PNT-3001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-PNT-3001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-029",
+    "question": "What is the base price and safety stock level for product SKU EB-PNT-3002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-PNT-3002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-030",
+    "question": "What is the base price and safety stock level for product SKU EB-WPF-4001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-WPF-4001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-031",
+    "question": "What is the base price and safety stock level for product SKU EB-CEM-1001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-CEM-1001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-032",
+    "question": "What is the base price and safety stock level for product SKU EB-CEM-1002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-CEM-1002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-033",
+    "question": "What is the base price and safety stock level for product SKU EB-STL-2001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-STL-2001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-034",
+    "question": "What is the base price and safety stock level for product SKU EB-STL-2002?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-STL-2002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-EXACT-035",
+    "question": "What is the base price and safety stock level for product SKU EB-TILE-6001?",
+    "question_type": "Exact Match",
+    "difficulty": "Easy",
+    "retrieval_method_expected": "BM25",
+    "exact_keywords": [
+      "EB-TILE-6001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-001",
+    "question": "Variation 1: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-002",
+    "question": "Variation 2: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-003",
+    "question": "Variation 3: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-004",
+    "question": "Variation 4: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-005",
+    "question": "Variation 5: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-006",
+    "question": "Variation 6: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-007",
+    "question": "Variation 7: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-008",
+    "question": "Variation 8: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-009",
+    "question": "Variation 9: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-010",
+    "question": "Variation 10: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-011",
+    "question": "Variation 11: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-012",
+    "question": "Variation 12: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-013",
+    "question": "Variation 13: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-014",
+    "question": "Variation 14: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-015",
+    "question": "Variation 15: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-016",
+    "question": "Variation 16: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-017",
+    "question": "Variation 17: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-018",
+    "question": "Variation 18: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-019",
+    "question": "Variation 19: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-020",
+    "question": "Variation 20: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-021",
+    "question": "Variation 21: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-022",
+    "question": "Variation 22: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-023",
+    "question": "Variation 23: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-024",
+    "question": "Variation 24: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-025",
+    "question": "Variation 25: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-026",
+    "question": "Variation 26: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-027",
+    "question": "Variation 27: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-028",
+    "question": "Variation 28: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-029",
+    "question": "Variation 29: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-030",
+    "question": "Variation 30: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-031",
+    "question": "Variation 31: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-032",
+    "question": "Variation 32: What precautions must be taken for stacked bags of cement to prevent moisture damage?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "master_product_catalogue_and_sku.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-033",
+    "question": "Variation 33: What should a customer do if they want to return cement bag purchases and what rules apply in 2026?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "return_policy_v3_2026_CURRENT.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-034",
+    "question": "Variation 34: How are employees compensated for travel to metropolitan areas versus tier two locations?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-SEMANTIC-035",
+    "question": "Variation 35: What are the guidelines regarding booking business class tickets for corporate travel?",
+    "question_type": "Semantic",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Vector",
+    "exact_keywords": "travel_and_expense_reimbursement_policy.docx",
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-001",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-002",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-003",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-004",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-005",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-006",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6010?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6010"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-007",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6100?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6100"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-008",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-PNT-3001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-PNT-3001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-009",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-PNT-3002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-PNT-3002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-010",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-WPF-4001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-WPF-4001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-011",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-012",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-013",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-014",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-015",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-016",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6010?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6010"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-017",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6100?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6100"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-018",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-PNT-3001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-PNT-3001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-019",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-PNT-3002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-PNT-3002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-020",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-WPF-4001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-WPF-4001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-021",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-022",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-023",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-024",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-025",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-026",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6010?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6010"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-027",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6100?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6100"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-028",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-PNT-3001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-PNT-3001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-029",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-PNT-3002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-PNT-3002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-030",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-WPF-4001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-WPF-4001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-031",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-032",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-CEM-1002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-CEM-1002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-033",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-034",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-STL-2002?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-STL-2002"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-HYBRID-035",
+    "question": "Can you give the storage instructions and verify settings under IS standards for rebar or catalog item EB-TILE-6001?",
+    "question_type": "Hybrid",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "Hybrid RRF",
+    "exact_keywords": [
+      "EB-TILE-6001"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-001",
+    "question": "Multi-hop Case 1: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-002",
+    "question": "Multi-hop Case 2: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-003",
+    "question": "Multi-hop Case 3: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-004",
+    "question": "Multi-hop Case 4: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-005",
+    "question": "Multi-hop Case 5: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-006",
+    "question": "Multi-hop Case 6: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-007",
+    "question": "Multi-hop Case 7: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-008",
+    "question": "Multi-hop Case 8: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-009",
+    "question": "Multi-hop Case 9: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-010",
+    "question": "Multi-hop Case 10: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-011",
+    "question": "Multi-hop Case 11: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-012",
+    "question": "Multi-hop Case 12: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-013",
+    "question": "Multi-hop Case 13: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-014",
+    "question": "Multi-hop Case 14: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-015",
+    "question": "Multi-hop Case 15: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-016",
+    "question": "Multi-hop Case 16: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-017",
+    "question": "Multi-hop Case 17: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-018",
+    "question": "Multi-hop Case 18: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-019",
+    "question": "Multi-hop Case 19: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-020",
+    "question": "Multi-hop Case 20: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-021",
+    "question": "Multi-hop Case 21: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-022",
+    "question": "Multi-hop Case 22: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-023",
+    "question": "Multi-hop Case 23: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-024",
+    "question": "Multi-hop Case 24: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-025",
+    "question": "Multi-hop Case 25: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-026",
+    "question": "Multi-hop Case 26: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-027",
+    "question": "Multi-hop Case 27: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-028",
+    "question": "Multi-hop Case 28: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-029",
+    "question": "Multi-hop Case 29: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-030",
+    "question": "Multi-hop Case 30: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-031",
+    "question": "Multi-hop Case 31: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-032",
+    "question": "Multi-hop Case 32: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-033",
+    "question": "Multi-hop Case 33: Does purchase of 5000 bags of OPC 53 Grade UltraStrong cement for Prestige Heights require CFO approval?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-034",
+    "question": "Multi-hop Case 34: What is the daily travel allowance for the manager who runs the Kolkata Gateway Depot?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MULTIHOP-035",
+    "question": "Multi-hop Case 35: What is the designated safety zone and storage rules for paint products ordered in EB-ORD-2026-78431?",
+    "question_type": "Multi-hop",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Hybrid RRF + Multi-Query",
+    "exact_keywords": [
+      "allowance",
+      "manager",
+      "CFO approval"
+    ],
+    "requires_image": false,
+    "requires_table": true,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-VERSION-001",
+    "question": "Version query variation 1: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-002",
+    "question": "Version query variation 2: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-003",
+    "question": "Version query variation 3: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-004",
+    "question": "Version query variation 4: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-005",
+    "question": "Version query variation 5: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-006",
+    "question": "Version query variation 6: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-007",
+    "question": "Version query variation 7: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-008",
+    "question": "Version query variation 8: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-009",
+    "question": "Version query variation 9: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-010",
+    "question": "Version query variation 10: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-011",
+    "question": "Version query variation 11: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-012",
+    "question": "Version query variation 12: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-013",
+    "question": "Version query variation 13: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-014",
+    "question": "Version query variation 14: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-015",
+    "question": "Version query variation 15: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-016",
+    "question": "Version query variation 16: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-017",
+    "question": "Version query variation 17: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-018",
+    "question": "Version query variation 18: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-019",
+    "question": "Version query variation 19: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-020",
+    "question": "Version query variation 20: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-021",
+    "question": "Version query variation 21: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-022",
+    "question": "Version query variation 22: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-023",
+    "question": "Version query variation 23: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-024",
+    "question": "Version query variation 24: What is the current active return period for building materials in 2026, and what was it in 2024?",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-VERSION-025",
+    "question": "Version query variation 25: How has standard customer return period changed from 2023 to 2026? State specific policy numbers and windows.",
+    "question_type": "Version Conflict",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vector + Metadata filtering",
+    "exact_keywords": [
+      "return window",
+      "2023",
+      "2026"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": true
+  },
+  {
+    "question_id": "Q-IMAGE-001",
+    "question": "Visual details question 1: What port number is specified for the ERP Database connection in the tech architecture diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-002",
+    "question": "Visual details question 2: Which safety zone in the warehouse zoning map holds flammables like paints and adhesives?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-003",
+    "question": "Visual details question 3: What spacing is required between adjacent tiles in the installation blueprint diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-004",
+    "question": "Visual details question 4: What is the reporting relationship between Vikram Malhotra and Rajesh Kumar in the org chart?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-005",
+    "question": "Visual details question 5: What port number is specified for the ERP Database connection in the tech architecture diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-006",
+    "question": "Visual details question 6: Which safety zone in the warehouse zoning map holds flammables like paints and adhesives?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-007",
+    "question": "Visual details question 7: What spacing is required between adjacent tiles in the installation blueprint diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-008",
+    "question": "Visual details question 8: What is the reporting relationship between Vikram Malhotra and Rajesh Kumar in the org chart?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-009",
+    "question": "Visual details question 9: What port number is specified for the ERP Database connection in the tech architecture diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-010",
+    "question": "Visual details question 10: Which safety zone in the warehouse zoning map holds flammables like paints and adhesives?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-011",
+    "question": "Visual details question 11: What spacing is required between adjacent tiles in the installation blueprint diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-012",
+    "question": "Visual details question 12: What is the reporting relationship between Vikram Malhotra and Rajesh Kumar in the org chart?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-013",
+    "question": "Visual details question 13: What port number is specified for the ERP Database connection in the tech architecture diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-014",
+    "question": "Visual details question 14: Which safety zone in the warehouse zoning map holds flammables like paints and adhesives?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-015",
+    "question": "Visual details question 15: What spacing is required between adjacent tiles in the installation blueprint diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-016",
+    "question": "Visual details question 16: What is the reporting relationship between Vikram Malhotra and Rajesh Kumar in the org chart?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-017",
+    "question": "Visual details question 17: What port number is specified for the ERP Database connection in the tech architecture diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-018",
+    "question": "Visual details question 18: Which safety zone in the warehouse zoning map holds flammables like paints and adhesives?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-019",
+    "question": "Visual details question 19: What spacing is required between adjacent tiles in the installation blueprint diagram?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-IMAGE-020",
+    "question": "Visual details question 20: What is the reporting relationship between Vikram Malhotra and Rajesh Kumar in the org chart?",
+    "question_type": "Image",
+    "difficulty": "Hard",
+    "retrieval_method_expected": "Vision Model (Qwen-VL)",
+    "exact_keywords": [
+      "port number",
+      "safety zone",
+      "spacing",
+      "reporting"
+    ],
+    "requires_image": true,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": false,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-001",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 1)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-002",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 2)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-003",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 3)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-004",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 4)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-005",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 5)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-006",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 6)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-007",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 7)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-008",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 8)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-009",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 9)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-010",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 10)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-011",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 11)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-012",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 12)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-013",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 13)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-014",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 14)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-015",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 15)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-016",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 16)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-017",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 17)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-018",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 18)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-019",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 19)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  },
+  {
+    "question_id": "Q-MMR-020",
+    "question": "What are the major operational risks and business threats faced by EASY BUILD? (Ref: 20)",
+    "question_type": "MMR Diversity",
+    "difficulty": "Medium",
+    "retrieval_method_expected": "MMR / Multi-query",
+    "exact_keywords": [
+      "risks",
+      "threats"
+    ],
+    "requires_image": false,
+    "requires_table": false,
+    "requires_multi_hop_reasoning": true,
+    "requires_version_awareness": false
+  }
+]

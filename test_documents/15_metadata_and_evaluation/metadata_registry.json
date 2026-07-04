@@ -1,0 +1,332 @@
+{
+  "corporate_history_and_overview.docx": {
+    "document_id": "EB-DOC-863",
+    "file_path": "01_company_overview/corporate_history_and_overview.docx",
+    "department": "Corporate Strategy",
+    "owner": "Rajesh Kumar",
+    "version": "4.2",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "strategic_growth_plan_2027_2030.docx": {
+    "document_id": "EB-DOC-394",
+    "file_path": "01_company_overview/strategic_growth_plan_2027_2030.docx",
+    "department": "Corporate Strategy",
+    "owner": "Rajesh Kumar",
+    "version": "4.2",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "executive_leadership_profiles.docx": {
+    "document_id": "EB-DOC-935",
+    "file_path": "01_company_overview/executive_leadership_profiles.docx",
+    "department": "Corporate Strategy",
+    "owner": "Rajesh Kumar",
+    "version": "4.2",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "annual_business_report_fy25_26.docx": {
+    "document_id": "EB-DOC-554",
+    "file_path": "02_sales_and_revenue/annual_business_report_fy25_26.docx",
+    "department": "Sales & Marketing",
+    "owner": "Priya Sharma",
+    "version": "2.1",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "sales_operations_playbook.docx": {
+    "document_id": "EB-DOC-608",
+    "file_path": "02_sales_and_revenue/sales_operations_playbook.docx",
+    "department": "Sales & Marketing",
+    "owner": "Priya Sharma",
+    "version": "2.1",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "regional_sales_performance_q3_fy26.xlsx": {
+    "document_id": "EB-DOC-629",
+    "file_path": "02_sales_and_revenue/regional_sales_performance_q3_fy26.xlsx",
+    "department": "Sales & Marketing",
+    "owner": "Priya Sharma",
+    "version": "2.1",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "master_product_catalogue_and_sku.docx": {
+    "document_id": "EB-DOC-740",
+    "file_path": "03_products_and_catalog/master_product_catalogue_and_sku.docx",
+    "department": "Product Management",
+    "owner": "Priya Sharma",
+    "version": "3.5",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "warehouse_inventory_operations_manual.docx": {
+    "document_id": "EB-DOC-562",
+    "file_path": "04_supply_chain_and_warehouses/warehouse_inventory_operations_manual.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "order_management_sop.docx": {
+    "document_id": "EB-DOC-609",
+    "file_path": "04_supply_chain_and_warehouses/order_management_sop.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "logistics_and_fleet_management_policy.docx": {
+    "document_id": "EB-DOC-935",
+    "file_path": "04_supply_chain_and_warehouses/logistics_and_fleet_management_policy.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "customer_support_knowledge_base.docx": {
+    "document_id": "EB-DOC-234",
+    "file_path": "05_customer_support/customer_support_knowledge_base.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "employee_handbook_and_conduct_policy.docx": {
+    "document_id": "EB-DOC-734",
+    "file_path": "06_human_resources/employee_handbook_and_conduct_policy.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "performance_management_and_appraisal_sop.docx": {
+    "document_id": "EB-DOC-412",
+    "file_path": "06_human_resources/performance_management_and_appraisal_sop.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "compensation_and_benefits_framework_2026.docx": {
+    "document_id": "EB-DOC-582",
+    "file_path": "06_human_resources/compensation_and_benefits_framework_2026.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "finance_and_procurement_policy_manual.docx": {
+    "document_id": "EB-DOC-227",
+    "file_path": "07_finance_and_procurement/finance_and_procurement_policy_manual.docx",
+    "department": "Finance & Accounts",
+    "owner": "Sunita Gupta",
+    "version": "3.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "travel_and_expense_reimbursement_policy.docx": {
+    "document_id": "EB-DOC-361",
+    "file_path": "07_finance_and_procurement/travel_and_expense_reimbursement_policy.docx",
+    "department": "Finance & Accounts",
+    "owner": "Sunita Gupta",
+    "version": "3.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "vendor_onboarding_and_compliance_code.docx": {
+    "document_id": "EB-DOC-241",
+    "file_path": "07_finance_and_procurement/vendor_onboarding_and_compliance_code.docx",
+    "department": "Finance & Accounts",
+    "owner": "Sunita Gupta",
+    "version": "3.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "technology_architecture_blueprint.docx": {
+    "document_id": "EB-DOC-783",
+    "file_path": "08_technology_and_ai/technology_architecture_blueprint.docx",
+    "department": "Technology",
+    "owner": "Vikram Malhotra",
+    "version": "2.5",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "ai_and_rag_transformation_strategy.docx": {
+    "document_id": "EB-DOC-757",
+    "file_path": "08_technology_and_ai/ai_and_rag_transformation_strategy.docx",
+    "department": "Technology",
+    "owner": "Vikram Malhotra",
+    "version": "2.5",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "data_governance_and_security_standards.docx": {
+    "document_id": "EB-DOC-613",
+    "file_path": "08_technology_and_ai/data_governance_and_security_standards.docx",
+    "department": "Technology",
+    "owner": "Vikram Malhotra",
+    "version": "2.5",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "whistleblower_and_anti_bribery_policy.docx": {
+    "document_id": "EB-DOC-564",
+    "file_path": "09_policies_and_compliance/whistleblower_and_anti_bribery_policy.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "code_of_business_ethics_and_conduct.docx": {
+    "document_id": "EB-DOC-687",
+    "file_path": "09_policies_and_compliance/code_of_business_ethics_and_conduct.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "environmental_health_and_safety_protocol.docx": {
+    "document_id": "EB-DOC-443",
+    "file_path": "09_policies_and_compliance/environmental_health_and_safety_protocol.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "board_of_directors_q3_strategic_review.docx": {
+    "document_id": "EB-DOC-613",
+    "file_path": "10_projects_and_meetings/board_of_directors_q3_strategic_review.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "minutes_of_annual_general_meeting_2025.docx": {
+    "document_id": "EB-DOC-927",
+    "file_path": "10_projects_and_meetings/minutes_of_annual_general_meeting_2025.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "project_neptune_supply_chain_upgrade.docx": {
+    "document_id": "EB-DOC-913",
+    "file_path": "10_projects_and_meetings/project_neptune_supply_chain_upgrade.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "multimodal_warehouse_zoning_report.docx": {
+    "document_id": "EB-DOC-747",
+    "file_path": "11_multimodal_documents/multimodal_warehouse_zoning_report.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "multimodal_product_spec_guide.docx": {
+    "document_id": "EB-DOC-677",
+    "file_path": "11_multimodal_documents/multimodal_product_spec_guide.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "multimodal_org_chart_and_roles.docx": {
+    "document_id": "EB-DOC-246",
+    "file_path": "11_multimodal_documents/multimodal_org_chart_and_roles.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "return_policy_v1_2023.docx": {
+    "document_id": "EB-DOC-555",
+    "file_path": "12_legacy_and_superseded_documents/return_policy_v1_2023.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Superseded",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "return_policy_v2_2024.docx": {
+    "document_id": "EB-DOC-881",
+    "file_path": "12_legacy_and_superseded_documents/return_policy_v2_2024.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Superseded",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "return_policy_v3_2026_CURRENT.docx": {
+    "document_id": "EB-DOC-313",
+    "file_path": "12_legacy_and_superseded_documents/return_policy_v3_2026_CURRENT.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Active",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  },
+  "vendor_credit_policy_legacy_2022.docx": {
+    "document_id": "EB-DOC-456",
+    "file_path": "12_legacy_and_superseded_documents/vendor_credit_policy_legacy_2022.docx",
+    "department": "Operations",
+    "owner": "Amit Patel",
+    "version": "1.0",
+    "status": "Superseded",
+    "creation_date": "2025-01-15",
+    "last_updated": "2026-04-01"
+  }
+}
