@@ -40,33 +40,38 @@ This pipeline recursively scans the target directory, extracts structural and vi
 
 ```mermaid
 flowchart TD
+    A["Raw Enterprise Directory (test_documents/)"] --> B["Unstructured.io Layout Analyzer (hi_res)"]
+    
+    B -->|Extract Text| C["Text Elements"]
+    B -->|Extract Tables| D["HTML Tables"]
+    B -->|Extract Images| E["Base64 Images"]
+    
+    C & D & E --> F["Title-Based Semantic Chunking"]
+    
+    F --> G{"Contains Table or Image?"}
+    
+    G -->|Yes| H["Local Qwen2-VL (via vLLM)"]
+    G -->|No| I["Raw Text Chunk"]
+    
+    H -->|Vision Analysis| J["AI-Enhanced Semantic Summary"]
+    
+    I & J --> K["Compiled LangChain Documents"]
+    
+    K --> L["Ollama Embeddings (nomic-embed-text)"]
+    K --> M["JSON Export (chunks_export.json)"]
+    
+    L --> N[("ChromaDB Vector Store (dbs/chroma)")]
+
     %% Styling
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef process fill:#e1f5fe,stroke:#0288d1,stroke-width:1.5px;
     classDef database fill:#efebe9,stroke:#5d4037,stroke-width:1.5px;
     classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:1.5px;
 
-    A["Raw Enterprise Directory (test_documents/)"] ::: default --> B["Unstructured.io Layout Analyzer (hi_res)"] ::: process
-    
-    B -->|Extract Text| C["Text Elements"] ::: default
-    B -->|Extract Tables| D["HTML Tables"] ::: default
-    B -->|Extract Images| E["Base64 Images"] ::: default
-    
-    C & D & E --> F["Title-Based Semantic Chunking"] ::: process
-    
-    F --> G{"Contains Table or Image?"} ::: decision
-    
-    G -->|Yes| H["Local Qwen2-VL (via vLLM)"] ::: process
-    G -->|No| I["Raw Text Chunk"] ::: default
-    
-    H -->|Vision Analysis| J["AI-Enhanced Semantic Summary"] ::: default
-    
-    I & J --> K["Compiled LangChain Documents"] ::: process
-    
-    K --> L["Ollama Embeddings (nomic-embed-text)"] ::: process
-    K --> M["JSON Export (chunks_export.json)"] ::: default
-    
-    L --> N[("ChromaDB Vector Store (dbs/chroma)")] ::: database
+    class A,C,D,E,I,J,M default;
+    class B,F,H,K,L process;
+    class G decision;
+    class N database;
 ```
 
 ### 2. Advanced Multi-Query Retrieval & Synthesis Pipeline
@@ -75,34 +80,39 @@ This pipeline takes user queries, expands them to capture multi-angle context, r
 
 ```mermaid
 flowchart TD
+    Query["User Query"] --> Expansion["Query Expansion (Qwen2-VL)"]
+    
+    Expansion -->|Generate 3 Variations| Var["Query Variations"]
+    
+    Var --> BM25["BM25 Lexical Search"]
+    Var --> Vector["Chroma Vector Search (MMR)"]
+    
+    DB[("ChromaDB (dbs/chroma)")] -.-> Vector
+    
+    BM25 & Vector --> Ensemble["Ensemble Retriever (0.7 Vector / 0.3 BM25)"]
+    
+    Ensemble --> RRF["Reciprocal Rank Fusion (RRF)"]
+    
+    RRF --> Rerank["Cross-Encoder Reranking (BAAI/bge-reranker-base)"]
+    
+    Rerank -->|Top 3 Chunks| Compiler["Multi-Modal Context Compiler"]
+    
+    Compiler -->|Text + HTML Tables + Base64 Images| Prompt["Rich Multi-Modal Prompt"]
+    
+    Prompt --> Qwen["Qwen2-VL Synthesis (via vLLM)"]
+    
+    Qwen --> Output["Factually Grounded Response"]
+
     %% Styling
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef process fill:#e1f5fe,stroke:#0288d1,stroke-width:1.5px;
     classDef llm fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1.5px;
     classDef database fill:#efebe9,stroke:#5d4037,stroke-width:1.5px;
 
-    Query["User Query"] ::: default --> Expansion["Query Expansion (Qwen2-VL)"] ::: llm
-    
-    Expansion -->|Generate 3 Variations| Var["Query Variations"] ::: default
-    
-    Var --> BM25["BM25 Lexical Search"] ::: process
-    Var --> Vector["Chroma Vector Search (MMR)"] ::: process
-    
-    DB[("ChromaDB (dbs/chroma)")] ::: database -.-> Vector
-    
-    BM25 & Vector --> Ensemble["Ensemble Retriever (0.7 Vector / 0.3 BM25)"] ::: process
-    
-    Ensemble --> RRF["Reciprocal Rank Fusion (RRF)"] ::: process
-    
-    RRF --> Rerank["Cross-Encoder Reranking (BAAI/bge-reranker-base)"] ::: process
-    
-    Rerank -->|Top 3 Chunks| Compiler["Multi-Modal Context Compiler"] ::: process
-    
-    Compiler -->|Text + HTML Tables + Base64 Images| Prompt["Rich Multi-Modal Prompt"] ::: default
-    
-    Prompt --> Qwen["Qwen2-VL Synthesis (via vLLM)"] ::: llm
-    
-    Qwen --> Output["Factually Grounded Response"] ::: default
+    class Query,Var,Prompt,Output default;
+    class BM25,Vector,Ensemble,RRF,Rerank,Compiler process;
+    class Expansion,Qwen llm;
+    class DB database;
 ```
 
 ---
