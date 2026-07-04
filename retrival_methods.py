@@ -40,7 +40,7 @@ class retrival_pipeline():
         
         self.original_query ="what is Easy Build revenue, profit and Sales"
         self.persistent_directory = "dbs/chroma"
-        self.embedding_model = OllamaEmbeddings(model="qwen3-embedding:4b")
+        self.embedding_model = OllamaEmbeddings(model="nomic-embed-text:latest")
         
         self.db = Chroma(
             persist_directory=self.persistent_directory,
@@ -49,7 +49,6 @@ class retrival_pipeline():
         )
         self.raw=self.db.get(include=['documents','metadatas'])
         self.documents=[]
-        print(self.raw)
         for text, meta in zip(self.raw["documents"],self.raw["metadatas"]):
             meta=meta or {}
             for k,v  in meta.items():
@@ -179,16 +178,20 @@ class retrival_pipeline():
         
         # Apply RRF to our retrieval results
     def reranker_chunks(self):
-        # Initialize Cohere reranker
-        reranker= CrossEncoderReranker(model=self.cross_encoder,top_n=self.reranker_k_no)
+        reranker = CrossEncoderReranker(model=self.cross_encoder, top_n=self.reranker_k_no)
         documents_only = [item[0] for item in self.sorted_chunks]
 
-        # Rerank the retrived documents
+        # DEBUG: confirm the relevant doc is even in the candidate pool
+        print(f"\n=== Candidates going into reranker ({len(documents_only)} total) ===")
+        for i, doc in enumerate(documents_only, 1):
+            print(f"{i}. {doc.page_content[:80]}")
 
-        self.reranked_docs= reranker.compress_documents(documents_only,self.original_query)
-        # show reranked results
-        for i, doc in enumerate(self.reranked_docs,1):
-            print(f"{i:2d}.{doc.page_content}")
+        self.reranked_docs = reranker.compress_documents(documents_only, self.original_query)
+
+        print(f"\n=== Reranked output ({len(self.reranked_docs)} total) ===")
+        for i, doc in enumerate(self.reranked_docs, 1):
+            print(f"{i:2d}. {doc.page_content[:80]}")
+
         return self.reranked_docs
     def generate_final_answer(self, chunks, query):
         """Generate final answer using multimodal content and local Qwen-VL model"""
@@ -252,8 +255,11 @@ ANSWER:"""
 
 if __name__=="__main__":
     pipeline = retrival_pipeline()
-    all_retrieval_results = pipeline.multiquery_RRM("what is infra")    
+    all_retrieval_results = pipeline.multiquery_RRM("what is Easy Build")    
+    print("----Printing Retrivel---")
+    print(all_retrieval_results[0][0].metadata)  # first doc from query 1
     fused_results = pipeline.reciprocal_rank_fusion(all_retrieval_results, k=60, verbose=True)
     reranked_docs_c =pipeline.reranker_chunks()
-    print
-    response=pipeline.generate_final_answer(chunks=reranked_docs_c[:2],query="what is infra")
+    response=pipeline.generate_final_answer(chunks=reranked_docs_c,query="what is infra")
+    print("----- final Answer----")
+    print(response)
