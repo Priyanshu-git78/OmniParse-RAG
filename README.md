@@ -1,104 +1,143 @@
-# Easy Build Multi-Modal RAG Pipeline (vLLM & Qwen2-VL)
+# 🏗️ Easy Build Multi-Modal RAG Pipeline (vLLM & Qwen2-VL)
 
-A production-ready, layout-aware Retrieval-Augmented Generation (RAG) pipeline designed for parsing, indexing, and querying complex multi-modal enterprise documents. The pipeline handles nested tables, flowcharts, technical catalogs, and multi-folder corporate repositories, delivering highly grounded answers by combining advanced retrieval methods with vision-language models.
+A production-ready, layout-aware Retrieval-Augmented Generation (RAG) pipeline designed for parsing, indexing, and querying complex multi-modal enterprise documents. The pipeline processes nested tables, flowcharts, technical catalogs, and multi-folder corporate repositories, delivering highly grounded answers by combining advanced retrieval methods with vision-language models.
 
 This system is built around a standardized **OpenAI-compatible API architecture**, leveraging **vLLM** to serve a vision-language model (`Qwen2-VL`) for layout extraction, visual summarization, and context-aware answer generation.
 
 ---
 
-## 🏗️ System Architecture & Design
+## 🛠️ Tech Stack & Dependencies
 
-The pipeline's core strength lies in its **modular API-first design** and **advanced retrieval mechanics**. Model interactions follow standard OpenAI-compatible calls, enabling seamless scaling and swapping of underlying LLMs.
-
-```mermaid
-flowchart TD
-    subgraph Ingestion["Document Ingestion & Indexing"]
-        A["Raw Enterprise Docs (test_documents/)"] --> B["Unstructured Layout Parser (hi_res)"]
-        B -->|Extract Text| C["Text Elements"]
-        B -->|Extract Tables| D["HTML Tables"]
-        B -->|Extract Images| E["Base64 Images"]
-        
-        C & D & E --> F["Title-Based Semantic Chunking"]
-        F --> G{"Contains Table or Image?"}
-        
-        G -->|Yes| H["Local Qwen2-VL (via vLLM)"]
-        G -->|No| I["Raw Text Chunk"]
-        
-        H -->|Vision Summary| J["AI-Enhanced Semantic Summary"]
-        I --> K["Final Indexable Chunks"]
-        J --> K
-        K --> L["Nomic Embedding (via Ollama)"]
-        L --> M[("ChromaDB Vector Store (dbs/chroma)")]
-        K --> Export["chunks_export.json"]
-    end
-    
-    subgraph Retrieval["Advanced Retrieval Pipeline"]
-        Query["User Query"] --> Expansion["Query Expansion (Qwen2-VL)"]
-        Expansion -->|Generate 3 Variations| Var["Query Variations"]
-        
-        Var --> BM25["BM25 Lexical Search"]
-        Var --> Vector["Chroma Vector Search (MMR)"]
-        
-        BM25 & Vector --> Ensemble["Ensemble Retriever (0.7 Vector / 0.3 BM25)"]
-        Ensemble --> RRF["Reciprocal Rank Fusion (RRF)"]
-        RRF --> Rerank["Cross-Encoder Reranking (BAAI/bge-reranker-base)"]
-        Rerank -->|Top 3 Compressive Chunks| Compiler["Multi-Modal Context Compiler"]
-    end
-    
-    subgraph Generation["Synthesis & Answer Generation"]
-        Compiler -->|Compile Text + HTML Tables + Base64 Images| Prompt["Rich Multi-Modal Prompt"]
-        Prompt --> Qwen["Qwen2-VL Model (via vLLM)"]
-        Qwen --> Output["Factually Grounded Response"]
-    end
+```html
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Model%20Server-vLLM-orange?style=for-the-badge&logo=opsgenie&logoColor=white" alt="vLLM" />
+  <img src="https://img.shields.io/badge/Vision%20LLM-Qwen2--VL-red?style=for-the-badge" alt="Qwen2-VL" />
+  <img src="https://img.shields.io/badge/Embeddings-Ollama-black?style=for-the-badge" alt="Ollama" />
+  <img src="https://img.shields.io/badge/Vector%20Store-ChromaDB-blue?style=for-the-badge" alt="ChromaDB" />
+  <img src="https://img.shields.io/badge/Orchestration-LangChain-green?style=for-the-badge" alt="LangChain" />
+</p>
 ```
+
+| Component | Technology / Model | Role in System | Deployment |
+| :--- | :--- | :--- | :--- |
+| **Document Parser** | `Unstructured.io` | Extract layout, text, tables, and images from PDFs | Local |
+| **Orchestration** | `LangChain` | Query expansion, retrieval chains, and LLM orchestration | Local |
+| **Vision LLM** | `Qwen2-VL-7B-Instruct-AWQ` | Visual descriptions, query expansion & final synthesis | Local (served via `vLLM`) |
+| **Vector Store** | `ChromaDB` | Persistent indexing and semantic retrieval | Local |
+| **Embeddings** | `nomic-embed-text` | Generate vector representations of text chunks | Local (via `Ollama`) |
+| **Reranker** | `BAAI/bge-reranker-base` | Cross-encoder relevance scoring of candidate chunks | Local (via `sentence-transformers`) |
 
 ---
 
-## 🎯 Key Achievements & Business Impact (Easy Build)
+## ⚙️ Pipeline System Architecture
 
-Developed to optimize document intelligence and enterprise retrieval workflows, this pipeline delivers high-fidelity information retrieval from complex multi-modal folders:
+To ensure high readability and maintain structural clarity, the architecture is split into two independent, sequential pipelines:
 
-* **Recursive Multi-Document Directory Ingestion**: Walks the structured `test_documents/` folder recursively, processing all sub-directories containing company policies, product catalogs, financial records, and human resource guides.
-* **High-Fidelity Layout Partitioning**: Isolates tabular data as raw HTML and visual assets as base64-encoded strings using the `unstructured` library's `hi_res` strategy, preserving 100% of formatting details from complex layouts.
-* **Structure-Preserving Semantic Chunking**: Implemented a title-based dynamic chunking strategy (`chunk_by_title`) that prevents document fragmentation by ensuring headers are semantically grouped with their corresponding body paragraphs within a target chunk size of 2,400–3,000 characters.
-* **AI-Powered Multi-Modal Searchability**: Built an automated vision indexing stage using the local Qwen-VL model to generate detailed, searchable text descriptions of tables and images, significantly improving keyword and dense retrieval recall on mixed-media materials.
-* **Advanced Hybrid & Diversity Retrieval**: Employs LangChain's `EnsembleRetriever` to fuse dense vector search (utilizing **Maximal Marginal Relevance (MMR)** for context diversity) with sparse BM25 lexical search (weighted `0.7` vector / `0.3` BM25).
-* **Multi-Query Expansion & RRF Blending**: Expands the user query into 3 distinct variations using LLM structured output, retrieves candidate documents for each variation, and blends the resulting ranks using **Reciprocal Rank Fusion (RRF)**.
-* **Cross-Encoder Reranking**: Re-scores candidate documents using a local `BAAI/bge-reranker-base` cross-encoder, compressing the context to the top 3 high-relevance chunks to avoid context stuffing and lower LLM inference latency.
-* **Hallucination-Free Multi-Modal Context Synthesis**: Compiles retrieved text, HTML tables, and base64 image streams into structured LangChain message payloads, allowing the LLM to generate grounded, factually accurate answers.
+### 1. Document Ingestion & Indexing Pipeline
+
+This pipeline recursively scans the target directory, extracts structural and visual elements, runs multimodal summaries on image-rich blocks, and generates vector indices.
+
+```mermaid
+flowchart TD
+    %% Styling
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
+    classDef process fill:#e1f5fe,stroke:#0288d1,stroke-width:1.5px;
+    classDef database fill:#efebe9,stroke:#5d4037,stroke-width:1.5px;
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:1.5px;
+
+    A["Raw Enterprise Directory (test_documents/)"] ::: default --> B["Unstructured.io Layout Analyzer (hi_res)"] ::: process
+    
+    B -->|Extract Text| C["Text Elements"] ::: default
+    B -->|Extract Tables| D["HTML Tables"] ::: default
+    B -->|Extract Images| E["Base64 Images"] ::: default
+    
+    C & D & E --> F["Title-Based Semantic Chunking"] ::: process
+    
+    F --> G{"Contains Table or Image?"} ::: decision
+    
+    G -->|Yes| H["Local Qwen2-VL (via vLLM)"] ::: process
+    G -->|No| I["Raw Text Chunk"] ::: default
+    
+    H -->|Vision Analysis| J["AI-Enhanced Semantic Summary"] ::: default
+    
+    I & J --> K["Compiled LangChain Documents"] ::: process
+    
+    K --> L["Ollama Embeddings (nomic-embed-text)"] ::: process
+    K --> M["JSON Export (chunks_export.json)"] ::: default
+    
+    L --> N[("ChromaDB Vector Store (dbs/chroma)")] ::: database
+```
+
+### 2. Advanced Multi-Query Retrieval & Synthesis Pipeline
+
+This pipeline takes user queries, expands them to capture multi-angle context, runs hybrid dense/sparse searches, blends results using Reciprocal Rank Fusion, rerank-compresses candidates, and synthesizes grounded answers.
+
+```mermaid
+flowchart TD
+    %% Styling
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
+    classDef process fill:#e1f5fe,stroke:#0288d1,stroke-width:1.5px;
+    classDef llm fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1.5px;
+    classDef database fill:#efebe9,stroke:#5d4037,stroke-width:1.5px;
+
+    Query["User Query"] ::: default --> Expansion["Query Expansion (Qwen2-VL)"] ::: llm
+    
+    Expansion -->|Generate 3 Variations| Var["Query Variations"] ::: default
+    
+    Var --> BM25["BM25 Lexical Search"] ::: process
+    Var --> Vector["Chroma Vector Search (MMR)"] ::: process
+    
+    DB[("ChromaDB (dbs/chroma)")] ::: database -.-> Vector
+    
+    BM25 & Vector --> Ensemble["Ensemble Retriever (0.7 Vector / 0.3 BM25)"] ::: process
+    
+    Ensemble --> RRF["Reciprocal Rank Fusion (RRF)"] ::: process
+    
+    RRF --> Rerank["Cross-Encoder Reranking (BAAI/bge-reranker-base)"] ::: process
+    
+    Rerank -->|Top 3 Chunks| Compiler["Multi-Modal Context Compiler"] ::: process
+    
+    Compiler -->|Text + HTML Tables + Base64 Images| Prompt["Rich Multi-Modal Prompt"] ::: default
+    
+    Prompt --> Qwen["Qwen2-VL Synthesis (via vLLM)"] ::: llm
+    
+    Qwen --> Output["Factually Grounded Response"] ::: default
+```
 
 ---
 
 ## 📂 Enterprise Corpus Structure (`test_documents`)
 
-The ingestion pipeline partitions and indexes the following structured folders in `test_documents/` representing various business units and domains:
+The ingestion pipeline partitions and indexes the following structured folders representing various business units and domains:
 
-* `01_company_overview`: Corporate history, executive structures, and high-level summaries.
-* `02_sales_and_revenue`: Financial reports, revenue dashboards, and sales figures.
-* `03_products_and_catalog`: Product brochures, technical specifications, and catalogs.
-* `04_supply_chain_and_warehouses`: Logistics guidelines, warehouse locations, and distribution schedules.
-* `05_customer_support`: Support workflows, SLAs, and troubleshooting databases.
-* `06_human_resources`: Employee handbooks, onboarding guides, and payroll structures.
-* `07_finance_and_procurement`: Procurement workflows, vendor info, and auditing files.
-* `08_technology_and_ai`: Architecture documents, internal tool descriptions, and AI guidelines.
-* `09_policies_and_compliance`: Regulatory requirements, security protocols, and compliance checklists.
-* `10_projects_and_meetings`: Meeting minutes, sprint goals, and upcoming initiatives.
-* `11_multimodal_documents`: Documents rich in charts, tables, diagrams, and base64 images.
-* `12_legacy_and_superseded_documents`: Archive files used for historic alignment.
-* `13_rag_benchmark_questions`: Evaluation questions targeting various levels of retrieval difficulty.
-* `14_ground_truth_answers`: Hand-curated answers for retrieval-generation validation.
-* `15_metadata_and_evaluation`: Performance sheets and grading configurations.
+| Directory | Focus / Domain | Description / Content |
+| :--- | :--- | :--- |
+| 📁 `01_company_overview` | Corporate Profile | Executive structures, company history, and key mission statements. |
+| 📁 `02_sales_and_revenue` | Sales & Finances | Revenue dashboards, quarterly sales reports, and figures. |
+| 📁 `03_products_and_catalog` | Product Specifications | Technical brochures, manuals, product catalogs, and dimensions. |
+| 📁 `04_supply_chain_and_warehouses` | Logistics & Operations | Warehouse distribution, dispatch schedules, and inventory tracking. |
+| 📁 `05_customer_support` | Support Databases | Resolution workflows, SLA parameters, and customer-care manuals. |
+| 📁 `06_human_resources` | Personnel & Culture | HR policies, employee handbooks, onboarding guides, and payroll. |
+| 📁 `07_finance_and_procurement` | Procurement & Audits | Vendor relations, purchasing guides, and auditing documentation. |
+| 📁 `08_technology_and_ai` | Engineering & Tools | System architecture sheets, infrastructure tools, and tech stacks. |
+| 📁 `09_policies_and_compliance` | Regulations & Safety | Compliance checklists, safety regulations, and environmental codes. |
+| 📁 `10_projects_and_meetings` | Project Management | Standup logs, sprint goals, meeting notes, and roadmap plans. |
+| 📁 `11_multimodal_documents` | Graphics & Tables | Complex documents containing flowcharts, diagrams, and figures. |
+| 📁 `12_legacy_and_superseded_documents` | Archive & History | Obsolete/superseded catalogs and manuals kept for compliance tracking. |
+| 📁 `13_rag_benchmark_questions` | QA Evaluation | Test query suites designed to assess retrieval accuracy. |
+| 📁 `14_ground_truth_answers` | Validation Baselines | Curated reference answers for assessing retrieval-generation output. |
+| 📁 `15_metadata_and_evaluation` | Performance Metrics | Scoring frameworks and metadata mappings for RAG metrics. |
 
 ---
 
-## 🛠️ Tech Stack
+## 🎯 Key Achievements & Implementation Merits
 
-* **Document Extraction:** `unstructured` (with PDF and table parser)
-* **Orchestration & Abstraction:** `LangChain`
-* **Local Vision LLM:** `Qwen2-VL-7B-Instruct-AWQ` served via **vLLM** (compatible with any OpenAI API client)
-* **Vector Store:** `ChromaDB` (using cosine similarity)
-* **Local Embeddings:** `nomic-embed-text` (run via `Ollama`)
-* **Cross-Encoder Model:** `BAAI/bge-reranker-base` via `sentence-transformers`
+* **Recursive Multi-Document Extraction**: Replaces flat single-file ingestion with directory-wide indexing across 15 custom domains.
+* **Hybrid & Diversity Retrieval**: Employs LangChain's `EnsembleRetriever` to fuse dense vector search (utilizing **Maximal Marginal Relevance (MMR)** for context diversity) with sparse BM25 lexical search (weighted `0.7` vector / `0.3` BM25).
+* **Multi-Query RRF Blending**: Expands the user query into 3 variations using LLM structured output, retrieves candidate documents for each, and blends the resulting ranks using **Reciprocal Rank Fusion (RRF)**.
+* **Cross-Encoder Reranking**: Re-scores candidate documents using a local `BAAI/bge-reranker-base` cross-encoder, compressing the context to the top 3 high-relevance chunks to avoid context stuffing and lower LLM inference latency.
+* **Layout Partitioning**: Isolates tabular data as raw HTML and visual assets as base64-encoded strings using the `unstructured` library's `hi_res` strategy.
 
 ---
 
@@ -157,11 +196,15 @@ To parse the recursive directories in `test_documents/` and index the enriched c
 ```bash
 python multi_modal_rag.py
 ```
-* **What happens**: Documents in `test_documents/` are partitioned and semantic chunks are created. Any chunk containing a table/image triggers a Qwen2-VL vision request to generate a search description. The results are stored in the vector store at `dbs/chroma` and exported to `chunks_export.json`.
+
+> [!NOTE]
+> Documents in `test_documents/` are partitioned and semantic chunks are created. Any chunk containing a table/image triggers a Qwen2-VL vision request to generate a search description. The results are stored in the vector store at `dbs/chroma` and exported to `chunks_export.json`.
 
 ### Step 2: Advanced Retrieval & Multi-Modal Synthesis
 To query the database using the advanced pipeline (Multi-Query -> Hybrid MMR & BM25 -> RRF -> Cross-Encoder Reranking -> Qwen2-VL synthesis):
 ```bash
 python retrival_methods.py
 ```
-* **What happens**: The script loads the vector database from `dbs/chroma` and constructs the BM25 search index. It generates 3 variations of the query, retrieves candidates via the hybrid ensemble, fuses them using RRF, reranks them using `BAAI/bge-reranker-base` to output the top 3 candidates, and constructs a rich multi-modal prompt containing text, HTML tables, and images. The local Qwen2-VL model then generates a factually grounded answer.
+
+> [!TIP]
+> The script loads the vector database from `dbs/chroma` and constructs the BM25 search index. It generates 3 variations of the query, retrieves candidates via the hybrid ensemble, fuses them using RRF, reranks them using `BAAI/bge-reranker-base` to output the top 3 candidates, and constructs a rich multi-modal prompt containing text, HTML tables, and images. The local Qwen2-VL model then generates a factually grounded answer.
