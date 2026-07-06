@@ -1,6 +1,6 @@
 
 from dotenv import load_dotenv
-
+import mlflow
 
 import json
 
@@ -24,13 +24,17 @@ from langchain_cohere import CohereRerank
 from langchain_core.messages import SystemMessage ,HumanMessage
 
 load_dotenv()
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
+mlflow.set_experiment('Rag Prompts')
+mlflow.langchain.autolog()
+
 
 class retrival_pipeline():
 
 
     def __init__(self):
         self.llm=init_chat_model(
-            model="Qwen/Qwen2-VL-7B-Instruct-AWQ",
+            model="Qwen/Qwen3-4B",
             openai_api_base="http://localhost:8005/v1",
             openai_api_key="pranshu123",
             model_provider="openai",
@@ -57,11 +61,11 @@ class retrival_pipeline():
                         meta[k] = json.loads(v)
                     except json.JSONDecodeError:
                         pass
-            self.documents.append(Document(page_content=text,meta_data=meta))
+            self.documents.append(Document(page_content=text,metadata=meta))
         
         # number of the chunks
-        self.k=10 # number of the chunks from hybrid retrival and mmr
-        self.reranker_k_no=3 # number of the chunks from reranker 
+        self.k=20 # number of the chunks from hybrid retrival and mmr
+        self.reranker_k_no=7 # number of the chunks from reranker 
 
 
         # intialize the reranker model from transformers
@@ -174,7 +178,7 @@ class retrival_pipeline():
                                 )
         if verbose:
                 print(f" RRF Complete Processed {len(self.sorted_chunks)} unique chunks from {len(chunk_lists)} queries")
-        return self.sorted_chunks
+        return [document for document, score in self.sorted_chunks]
         
         # Apply RRF to our retrieval results
     def reranker_chunks(self):
@@ -193,12 +197,13 @@ class retrival_pipeline():
             print(f"{i:2d}. {doc.page_content[:80]}")
 
         return self.reranked_docs
-    def generate_final_answer(self, chunks, query):
+    def generate_final_answer(self, chunks=None, query=None):
         """Generate final answer using multimodal content and local Qwen-VL model"""
-        if self.reranked_docs:
-            chunks=self.reranked_docs
-        if  self.original_query:
-            query=self.original_query
+        if chunks is None:
+            chunks = self.reranked_docs
+
+        if query is None:
+            query = self.original_query
         try:
             # Build the base prompt
             prompt_text = f"""Based on the following documents, please answer this question: {query}
@@ -210,10 +215,14 @@ CONTENT TO ANALYZE:
                 prompt_text += f"--- Document {i+1} ---\n"
                 
                 if "original_content" in chunk.metadata:
-                    original_data = json.loads(chunk.metadata["original_content"])
-                    
-                    # Add raw text
+                    original_data = chunk.metadata["original_content"]
+
+                    if isinstance(original_data, str):
+                        original_data = json.loads(original_data)
+
                     raw_text = original_data.get("raw_text", "")
+
+
                     if raw_text:
                         prompt_text += f"TEXT:\n{raw_text}\n\n"
                     
@@ -237,16 +246,17 @@ ANSWER:"""
             # Add all images from all chunks and prepend placeholders
             for chunk in chunks:
                 if "original_content" in chunk.metadata:
-                    original_data = json.loads(chunk.metadata["original_content"])
-                    images_base64 = original_data.get("images_base64", [])
-                    
+                    raw = chunk.metadata["original_content"]
+                    if isinstance(raw,str):
+                        raw = json.loads(raw)
+                    images_base64 = raw.get("images_base64", [])
                     for image_base64 in images_base64:
                         message_content[0]["text"] = "<image>\n" + message_content[0]["text"]
                         message_content.append({
                             "type": "image_url",
                             "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}
                         })
-            
+          
             message = HumanMessage(content=message_content)
             response = self.llm.invoke([message])
             return response.content
@@ -255,11 +265,9 @@ ANSWER:"""
 
 if __name__=="__main__":
     pipeline = retrival_pipeline()
-    all_retrieval_results = pipeline.multiquery_RRM("what is Easy Build")    
-    print("----Printing Retrivel---")
-    print(all_retrieval_results[0][0].metadata)  # first doc from query 1
-    fused_results = pipeline.reciprocal_rank_fusion(all_retrieval_results, k=60, verbose=True)
+    all_retrieval_results = pipeline.multiquery_RRM("what is Easy Build revenue Jan month")    
+    fused_results = pipeline.reciprocal_rank_fusion(all_retrieval_results, k=60, verbose=False)
     reranked_docs_c =pipeline.reranker_chunks()
-    response=pipeline.generate_final_answer(chunks=reranked_docs_c,query="what is infra")
+    response=pipeline.generate_final_answer(chunks=reranked_docs_c,query="what is Easy Build revenue Jan month")
     print("----- final Answer----")
-    print(response)
+    print(response) 
