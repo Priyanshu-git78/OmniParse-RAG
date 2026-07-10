@@ -13,6 +13,8 @@ from langchain_classic.retrievers.document_compressors import CrossEncoderRerank
 
 from langchain_community.cross_encoders import HuggingFaceCrossEncoder
 from langchain_classic.retrievers.document_compressors import CrossEncoderReranker
+from langchain_huggingface import HuggingFaceEmbeddings
+
 
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
@@ -22,11 +24,14 @@ from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document
 from langchain_cohere import CohereRerank
 from langchain_core.messages import SystemMessage ,HumanMessage
+import streamlit as st
+import os
 
 load_dotenv()
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
-mlflow.set_experiment('Rag Prompts')
-mlflow.langchain.autolog()
+
+# mlflow.set_tracking_uri("http://127.0.0.1:5000")
+# mlflow.set_experiment('Rag Prompts')
+# mlflow.langchain.autolog()
 
 
 class retrival_pipeline():
@@ -34,9 +39,9 @@ class retrival_pipeline():
 
     def __init__(self):
         self.llm=init_chat_model(
-            model="Qwen/Qwen3-4B",
-            openai_api_base="http://localhost:8005/v1",
-            openai_api_key="pranshu123",
+            model="qwen/qwen3-32b",
+            openai_api_base="https://api.groq.com/openai/v1",
+            openai_api_key=os.environ["GROQ_API_KEY"],
             model_provider="openai",
             temperature=0.0,
         )
@@ -44,7 +49,11 @@ class retrival_pipeline():
         
         self.original_query ="what is Easy Build revenue, profit and Sales"
         self.persistent_directory = "dbs/chroma"
-        self.embedding_model = OllamaEmbeddings(model="nomic-embed-text:latest")
+        self.embedding_model = self.embedding_model = HuggingFaceEmbeddings(
+            model_name="BAAI/bge-small-en-v1.5",
+            model_kwargs={"device": "cpu"},
+            encode_kwargs={"normalize_embeddings": True},
+        )
         
         self.db = Chroma(
             persist_directory=self.persistent_directory,
@@ -98,7 +107,7 @@ class retrival_pipeline():
         class Queryvariations(BaseModel):
             queries : list[str]
 
-        llm_with_tool = self.llm.with_structured_output(Queryvariations)
+        llm_with_tool = self.llm.with_structured_output(Queryvariations,method="function_calling")
 
         prompt = f"""Generate 3 different variations of this query that would help retrieve relevant documents:
 
@@ -262,12 +271,13 @@ ANSWER:"""
             return response.content
         except json.JSONDecodeError as e :
             print("not sucessful{e}")
-
-if __name__=="__main__":
+def main_retrival_pipeline(query:str):
     pipeline = retrival_pipeline()
-    all_retrieval_results = pipeline.multiquery_RRM("what is Easy Build revenue Jan month")    
+    all_retrieval_results = pipeline.multiquery_RRM(query)    
     fused_results = pipeline.reciprocal_rank_fusion(all_retrieval_results, k=60, verbose=False)
     reranked_docs_c =pipeline.reranker_chunks()
-    response=pipeline.generate_final_answer(chunks=reranked_docs_c,query="what is Easy Build revenue Jan month")
-    print("----- final Answer----")
-    print(response) 
+    response=pipeline.generate_final_answer(chunks=reranked_docs_c,query=query)
+    return response
+
+if __name__=="__main__":
+   main_retrival_pipeline(query="what is Easy Build")

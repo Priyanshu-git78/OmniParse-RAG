@@ -11,7 +11,7 @@ from langchain_core.documents import Document
 from langchain_core.messages import HumanMessage
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_chroma import Chroma
-
+from langchain_huggingface import HuggingFaceEmbeddings
 # Load environment variables from .env file
 load_dotenv()
 
@@ -29,9 +29,13 @@ class MultiModalRAG:
         llm_model: str = "Qwen/Qwen2-VL-7B-Instruct-AWQ",
         llm_api_base: str = None,
         llm_api_key: str = None,
-        embedding_model: str = "nomic-embed-text:latest",
-        embedding_base_url: str = "http://localhost:11434"
     ):
+        print(f"🔮 Initializing Embeddings:")
+        self.embedding_model = self.embeddings = HuggingFaceEmbeddings(
+            model_name="BAAI/bge-small-en-v1.5",
+            model_kwargs={"device": "cpu"},
+            encode_kwargs={"normalize_embeddings": True},
+        )
         self.pdf_path = pdf_path
         self.chroma_db_dir = chroma_db_dir
         self.export_json_path = export_json_path
@@ -43,20 +47,15 @@ class MultiModalRAG:
         
         # Initialize vision-capable local LLM
         print(f"🤖 Initializing Chat Model: {self.llm_model} at {self.llm_api_base}")
-        self.llm = init_chat_model(
-            model=self.llm_model,
-            openai_api_base=self.llm_api_base,
-            openai_api_key=self.llm_api_key,
+        self.llm=init_chat_model(
+            model="qwen/qwen3-32b",
+            openai_api_base="https://api.groq.com/openai/v1",
+            openai_api_key=os.environ["GROQ_API_KEY"],
             model_provider="openai",
             temperature=0.0,
         )
         
         # Initialize local embeddings
-        print(f"🔮 Initializing Embeddings: {embedding_model} at {embedding_base_url}")
-        self.embeddings = OllamaEmbeddings(
-            model=embedding_model,
-            base_url=embedding_base_url
-        )
         
         # To store vector database connection
         self.db = None
@@ -74,19 +73,23 @@ class MultiModalRAG:
                 files.append(os.path.join(root, f))
 
         all_elements = []
+        target_extensions=(".docx",".xlsx",".csv",".pdf",".pptx")
         for file in files:
-            try:
-                print(f"📄 Partitioning document: {file}")
-                elements = partition(
-                    filename=file,
-                    strategy="hi_res",
-                    infer_table_structure=True,
-                    extract_image_block_types=["Image"],
-                    extract_image_block_to_payload=True,
-                )
-                all_elements.extend(elements)
-            except Exception as e:
-                print(f"⚠️ Failed to partition {file}: {e}")
+            if file.lower().endswith(target_extensions):                
+                try:
+                    print(f"📄 Partitioning document: {file}")
+                    elements = partition(
+                        filename=file,
+                        strategy="hi_res",
+                        infer_table_structure=True,
+                        extract_image_block_types=["Image"],
+                        extract_image_block_to_payload=True,
+                    )
+                    all_elements.extend(elements)
+                except Exception as e:
+                    print(f"⚠️ Failed to partition {file}: {e}")
+            else:
+                print(f"file format is not supported yet: {file}")
 
         return all_elements   # always a list
 

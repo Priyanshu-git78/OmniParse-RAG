@@ -1,4 +1,5 @@
 db/
+*.streamlit
 *.sqlite3
 *.onnx
 *.onnx.1
