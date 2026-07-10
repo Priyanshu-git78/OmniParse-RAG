@@ -3,6 +3,8 @@ db/
 *.sqlite3
 *.onnx
 *.onnx.1
+*mlartifacts/1/traces
+*.vscode
 .env
 __pycache__/
 .venv/
