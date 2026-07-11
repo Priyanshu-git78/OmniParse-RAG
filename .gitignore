@@ -8,3 +8,5 @@ db/
 .env
 __pycache__/
 .venv/
+*other documents
+*uploads
