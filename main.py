@@ -1,10 +1,11 @@
 from retrival_methods import main_retrival_pipeline
 import streamlit as st
 from pathlib import Path
-
+from time import time
 
 # Title of the APP
-st.title("This is RAG Pipeline Build for Demo Purpose")
+st.title("Indutry RAG Pipeline Build for Demo Purpose")
+st.note("AI-generated Easy Build documents have in db ask anything about it")
 
 
 #upload dir and logic 
@@ -22,6 +23,7 @@ st.title("This is RAG Pipeline Build for Demo Purpose")
 query=st.chat_input("Enter Your Query")
 if query:
     st.write("your query in process")
-response=main_retrival_pipeline(query)
-st.title("working:")
-st.write(f"Answer for your query : {response}")
+    response=main_retrival_pipeline(query)
+    time(5)
+    st.title("working:")
+    st.write(f"Answer for your query : {response}")
