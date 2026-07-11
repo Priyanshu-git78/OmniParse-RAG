@@ -62,20 +62,24 @@ class MultiModalRAG:
 
     def partition_documents(self, file_path: str = None):
         path = file_path or self.pdf_path
+        if os.path.isfile(path):
+            files=[path]
+        elif os.path.isdir(path):        
+            files = []
+            for root, dirs, filenames in os.walk(path):
+                for f in filenames:
+                    files.append(os.path.join(root, f))
+        # elif not os.path.isdir(path):
+        #     print(f"❌ Error: {path} not found")
+        #     return []   # return empty list, not None
 
-        if not os.path.isdir(path):
-            print(f"❌ Error: {path} not found")
-            return []   # return empty list, not None
-
-        files = []
-        for root, dirs, filenames in os.walk(path):
-            for f in filenames:
-                files.append(os.path.join(root, f))
 
         all_elements = []
         target_extensions=(".docx",".xlsx",".csv",".pdf",".pptx")
         for file in files:
-            if file.lower().endswith(target_extensions):                
+            print(f"file exists:{file}")  
+            if file.lower().endswith(target_extensions):
+                print(f"file process try:{file}")                
                 try:
                     print(f"📄 Partitioning document: {file}")
                     elements = partition(
@@ -357,30 +361,17 @@ ANSWER:"""
         answer = self.generate_final_answer(retrieved_docs, query)
         return answer
 
-    def run_pipeline(self):
-        """Run the full ingestion pipeline: partition, chunk, summarise, export, and create vector store"""
-        elements = self.partition_documents(file_path="test_documents")
-        chunks = self.create_chunks_by_title(elements)
-        langchain_docs = self.summarise_chunks(chunks)
-        self.export_chunks_to_json(langchain_docs)
-        self.create_vector_store(langchain_docs)
-        return langchain_docs
+def run_ingestion_pipeline(file_path="test_documents"):
+    """Run the full ingestion pipeline: partition, chunk, summarise, export, and create vector store"""
+    self=MultiModalRAG()
+    elements = self.partition_documents(file_path)
+    chunks = self.create_chunks_by_title(elements)
+    langchain_docs = self.summarise_chunks(chunks)
+    self.export_chunks_to_json(langchain_docs)
+    self.create_vector_store(langchain_docs)
+    return langchain_docs
 
-def main():
-    # Instantiate the RAG class
-    rag = MultiModalRAG()
-    
-    # Run ingestion pipeline
-    rag.run_pipeline()
-    
-    # Test Retrieval and Generation
-    query = "What is the ready mix concrete strength or applications?"
-    print(f"\n🔍 Testing retrieval and generation with query: '{query}'")
-    
-    answer = rag.query(query, k=2)
-    print("\nAnswer:")
-    print(answer) # Answer: Based on the information provided in the given documents, the ready mix concrete strength or applications are not explicitly mentioned. However, the documents do discuss the importance of proper curing for a minimum of 7 to 10 days to prevent early moisture loss and ensure target compressive strength is met. They also mention that concrete structures must be designed in accordance with standard design codes and the grade of concrete selected must match the environmental exposure conditions to prevent carbonation, chloride attack, and reinforcing steel corrosion. Additionally, the documents mention that hydration reaction starts as soon as water meets the cement particles and that fly ash addition in Portland Pozzolana cement reacts chemically with calcium hydroxide released during hydration, forming additional calcium silicate hydrates (C-S-H) that contribute to long-term strength and reduce permeability.
     
 
 if __name__ == "__main__":
-    main()
+    run_ingestion_pipeline("uploads/Tally Claude AI proposal.docx")

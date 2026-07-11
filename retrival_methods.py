@@ -73,8 +73,8 @@ class retrival_pipeline():
             self.documents.append(Document(page_content=text,metadata=meta))
         
         # number of the chunks
-        self.k=20 # number of the chunks from hybrid retrival and mmr
-        self.reranker_k_no=7 # number of the chunks from reranker 
+        self.k=5 # number of the chunks from hybrid retrival and mmr
+        self.reranker_k_no=3 # number of the chunks from reranker 
 
 
         # intialize the reranker model from transformers
