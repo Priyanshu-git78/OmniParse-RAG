@@ -374,4 +374,4 @@ def ingestion_pipeline(file_path="test_documents"):
     
 
 if __name__ == "__main__":
-    run_ingestion_pipeline("uploads/Tally Claude AI proposal.docx")
+    ingestion_pipeline("uploads/Tally Claude AI proposal.docx")
