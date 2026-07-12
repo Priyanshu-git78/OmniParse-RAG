@@ -12,7 +12,6 @@ from collections import defaultdict
 from langchain_classic.retrievers.document_compressors import CrossEncoderReranker
 
 from langchain_community.cross_encoders import HuggingFaceCrossEncoder
-from langchain_classic.retrievers.document_compressors import CrossEncoderReranker
 from langchain_huggingface import HuggingFaceEmbeddings
 
 
