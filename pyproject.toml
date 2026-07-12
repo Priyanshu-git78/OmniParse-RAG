@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "en-core-web-sm",
     "jupyter>=1.1.1",
     "lab>=8.10",
     "langchain-chroma>=1.1.0",
@@ -32,3 +33,6 @@ dependencies = [
 
 [[tool.uv.index]]
 url = "https://pypi.nvidia.com/simple"
+
+[tool.uv.sources]
+en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl" }

@@ -84,7 +84,7 @@ if mode == "Upload Document":
         with open(file_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         response = ingestion_pipeline(str(file_path))
-        st.write(response)
+        st.write(f"chunks:{response}")
     
     query=st.chat_input("Enter Your Query")
     if query:
