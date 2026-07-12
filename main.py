@@ -4,7 +4,7 @@ from pathlib import Path
 import time
 import streamlit as st
 from textwrap import dedent
-from run_ingestion_pipeline import run_ingestion_pipeline
+from ingestion_pipeline import ingestion_pipeline
 
 
 mode= st.segmented_control(
@@ -83,7 +83,7 @@ if mode == "Upload Document":
         file_path= UPLOAD_DIR/uploaded_file.name 
         with open(file_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
-        response = run_ingestion_pipeline(str(file_path))
+        response = ingestion_pipeline(str(file_path))
         st.write(response)
     
     query=st.chat_input("Enter Your Query")

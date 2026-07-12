@@ -370,7 +370,6 @@ def run_ingestion_pipeline(file_path="test_documents"):
     self.export_chunks_to_json(langchain_docs)
     self.create_vector_store(langchain_docs)
     return langchain_docs
-
     
 
 if __name__ == "__main__":
