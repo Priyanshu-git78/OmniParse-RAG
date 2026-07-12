@@ -1,9 +1,11 @@
 
 from dotenv import load_dotenv
 # import mlflow
+import re
+from models import get_embedding_model,reranker_model
 
 import json
-
+import time
 from pydantic import BaseModel
 from collections import defaultdict
 # Load a local open-source cross-encoder model
@@ -48,11 +50,7 @@ class retrival_pipeline():
         
         self.original_query ="what is Easy Build revenue, profit and Sales"
         self.persistent_directory = "dbs/chroma"
-        self.embedding_model = self.embedding_model = HuggingFaceEmbeddings(
-            model_name="BAAI/bge-small-en-v1.5",
-            model_kwargs={"device": "cpu"},
-            encode_kwargs={"normalize_embeddings": True},
-        )
+        self.embedding_model = get_embedding_model()
         
         self.db = Chroma(
             persist_directory=self.persistent_directory,
@@ -77,7 +75,7 @@ class retrival_pipeline():
 
 
         # intialize the reranker model from transformers
-        self.cross_encoder = HuggingFaceCrossEncoder(model_name="BAAI/bge-reranker-base",model_kwargs={"device":"cpu"})
+        self.cross_encoder = reranker_model()
 
     def hybrid_retriver(self):
         bm25_retriever=BM25Retriever.from_documents(self.documents)
@@ -271,12 +269,29 @@ ANSWER:"""
         except json.JSONDecodeError as e :
             print("not sucessful{e}")
 def main_retrival_pipeline(query:str):
+    start=time.perf_counter()
+    process_text=st.empty()
     pipeline = retrival_pipeline()
-    all_retrieval_results = pipeline.multiquery_RRM(query)    
+    all_retrieval_results = pipeline.multiquery_RRM(query)
+    process_text.write(f"Process : multi-queryies:{all_retrieval_results[:2][:100]}")    
     fused_results = pipeline.reciprocal_rank_fusion(all_retrieval_results, k=60, verbose=False)
+    process_text.write(f"Process : Hybrid BM25 and MMR retrival chunks:{fused_results[:2][:100]}")
     reranked_docs_c =pipeline.reranker_chunks()
+    process_text.write(f"Process : Reranker {reranked_docs_c[:2][:100]}")
     response=pipeline.generate_final_answer(chunks=reranked_docs_c,query=query)
-    return response
+    thinking=re.search(r"<think>(.*?)</think>",str(response),re.DOTALL)
+    with st.expander("think", expanded=False):
+        st.write(thinking.group(1).strip())
+    response = re.sub(
+        pattern=r"<think>.*?</think>",
+        repl="",
+        string=str(response),
+        flags=re.DOTALL
+    )
+    process_text.empty()
+    end=time.perf_counter()
+    time_taken = start-end
+    return response , time_taken
 
 if __name__=="__main__":
    main_retrival_pipeline(query="what is Easy Build")

@@ -3,7 +3,7 @@ import json
 from typing import List
 from dotenv import load_dotenv
 import time
-
+from models import get_embedding_model
 # LangChain and Unstructured imports
 from unstructured.partition.auto import partition
 from unstructured.chunking.title import chunk_by_title
@@ -12,9 +12,13 @@ from langchain_core.documents import Document
 from langchain_core.messages import HumanMessage
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_chroma import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+
 # Load environment variables from .env file
 load_dotenv()
+from streamlit.runtime.scriptrunner import add_script_run_ctx
+
+
+import streamlit as st
 
 # Configuration paths
 PDF_PATH = "1744086987764_infra_plywood_catalogue_1_.pdf"
@@ -32,11 +36,7 @@ class MultiModalRAG:
         llm_api_key: str = None,
     ):
         print(f"🔮 Initializing Embeddings:")
-        self.embedding_model = self.embeddings = HuggingFaceEmbeddings(
-            model_name="BAAI/bge-small-en-v1.5",
-            model_kwargs={"device": "cpu"},
-            encode_kwargs={"normalize_embeddings": True},
-        )
+        self.embedding_model = self.embeddings = get_embedding_model()
         self.pdf_path = pdf_path
         self.chroma_db_dir = chroma_db_dir
         self.export_json_path = export_json_path
@@ -196,10 +196,12 @@ class MultiModalRAG:
         print("🧠 Processing chunks with AI Summaries...")
         langchain_documents = []
         total_chunks = len(chunks)
-        
+        progress_bar = st.progress(0)
         for i, chunk in enumerate(chunks):
             current_chunk = i + 1
             print(f"   Processing chunk {current_chunk}/{total_chunks}")
+            
+            progress_bar.progress(current_chunk/total_chunks)
 
             # Analyze chunk content
             content_data = self.separate_content_types(chunk)
@@ -236,7 +238,7 @@ class MultiModalRAG:
                 }
             )
             langchain_documents.append(doc)
-        
+        progress_bar.empty()
         print(f"✅ Processed {len(langchain_documents)} chunks")
         return langchain_documents
 
@@ -364,13 +366,26 @@ ANSWER:"""
 
 def ingestion_pipeline(file_path="test_documents"):
     """Run the full ingestion pipeline: partition, chunk, summarise, export, and create vector store"""
-    time 
+    start=time.perf_counter()
     self=MultiModalRAG()
+    def elapsed():
+        return f"{time.perf_counter()-start:.1f}s"
+    
+
+    placeholder= st.empty()
+    placeholder.write(f"document processing... {elapsed()}")
     elements = self.partition_documents(file_path)
+    placeholder.write(f"creating chunks... {elapsed()}")
     chunks = self.create_chunks_by_title(elements)
+    
+    placeholder.write(f"generating AI summary of chunks...")
     langchain_docs = self.summarise_chunks(chunks)
+    placeholder.write(f"Your Documents Process : Ask any query")
     self.create_vector_store(langchain_docs)
-    return langchain_docs
+    end = time.perf_counter()
+    time_taken=end-start
+    placeholder
+    return langchain_docs, time_taken
     
 
 if __name__ == "__main__":

@@ -5,6 +5,10 @@ import time
 import streamlit as st
 from textwrap import dedent
 from ingestion_pipeline import ingestion_pipeline
+import re
+from models import get_embedding_model, reranker_model
+
+
 
 
 mode= st.segmented_control(
@@ -40,11 +44,8 @@ if mode=="Easy Build":
     st.divider()
     query=st.chat_input("Enter Your Query")
     if query:
-        st.write("your query in process")
-        response=main_retrival_pipeline(query)
-        time.sleep(5)
-        st.title("working:")
-        st.write(f"Answer for your query : {response}")
+        response, time_taken=main_retrival_pipeline(query)
+        st.markdown(response)
 if mode == "Upload Document":
     st.markdown(dedent("""
     <div style="text-align:center; padding:2rem 1rem 2.5rem 1rem;">
@@ -58,6 +59,9 @@ if mode == "Upload Document":
         ">
             🤖 Industry-Grade RAG Pipeline
         </h1>
+
+
+#upload dir and 
         <p style="font-size:1.05rem; color:#6c757d; max-width:600px; margin:0 auto 1.2rem auto;">
             Upload a document and interact with it using an AI-powered RAG pipeline.
         </p>
@@ -83,19 +87,18 @@ if mode == "Upload Document":
         file_path= UPLOAD_DIR/uploaded_file.name 
         with open(file_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
-        response = ingestion_pipeline(str(file_path))
-        st.write(f"chunks:{response}")
-    
+        response,time_taken = ingestion_pipeline(str(file_path))
+        st.json(response, expanded=False)
+        st.write(time_taken)
     query=st.chat_input("Enter Your Query")
     if query:
-        st.write("your query in process")
-        response=main_retrival_pipeline(query)
-        time.sleep(5)
-        st.title("working:")
-        st.write(f"Answer for your query : {response}")
+        response, time_taken=main_retrival_pipeline(query)
+        st.markdown(response)
+
     
 
-
+get_embedding_model()
+reranker_model()
 
 #upload dir and logic 
 # UPLOAD_DIR= Path("uploads")
