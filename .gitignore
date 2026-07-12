@@ -1,10 +1,9 @@
 db/
 *.streamlit
-
 *.onnx
 *.onnx.1
 *mlartifacts/1/traces
-*.vscode
+.vscode/
 .env
 __pycache__/
 .venv/
