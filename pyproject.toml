@@ -25,8 +25,9 @@ dependencies = [
     "rank-bm25>=0.2.2",
     "requests>=2.34.2",
     "sentence-transformers>=5.6.0",
-    "spacy>=3.7,<3.9",
+    "spacy>=3.8",
     "streamlit>=1.59.1",
+    "thinc>=8.3",
     "transformers>=5.13.0",
     "unstructured[docx,pdf,pptx,xlsx]>=0.24.0",
 ]
