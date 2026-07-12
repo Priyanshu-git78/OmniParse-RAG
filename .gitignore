@@ -1,6 +1,6 @@
 db/
 *.streamlit
-*.sqlite3
+
 *.onnx
 *.onnx.1
 *mlartifacts/1/traces
