@@ -1,8 +1,12 @@
-# 🏗️ Easy Build Multi-Modal RAG Pipeline (vLLM & Qwen2-VL)
+# 🏗️ Easy Build Multi-Modal RAG Pipeline
 
-A production-ready, layout-aware Retrieval-Augmented Generation (RAG) pipeline designed for parsing, indexing, and querying complex multi-modal enterprise documents. The pipeline processes nested tables, flowcharts, technical catalogs, and multi-folder corporate repositories, delivering highly grounded answers by combining advanced retrieval methods with vision-language models.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://omniparse-rag.streamlit.app/)
 
-This system is built around a standardized **OpenAI-compatible API architecture**, leveraging **vLLM** to serve a vision-language model (`Qwen2-VL`) for layout extraction, visual summarization, and context-aware answer generation.
+A production-ready, layout-aware Retrieval-Augmented Generation (RAG) pipeline designed for parsing, indexing, and querying complex multi-modal enterprise documents. The pipeline processes nested tables, flowcharts, technical catalogs, and multi-folder corporate repositories, delivering highly grounded answers by combining advanced retrieval methods with vision-capable language models.
+
+This system is built around an **advanced hybrid retrieval and reranking architecture**, leveraging **Streamlit** for the frontend, **LangChain** for orchestration, and **Groq** to access high-performance LLMs (`qwen/qwen3-32b`) for layout summarization, query expansion, and context-aware answer generation.
+
+* **Live Application:** [omniparse-rag.streamlit.app](https://omniparse-rag.streamlit.app/)
 
 ---
 
@@ -10,37 +14,38 @@ This system is built around a standardized **OpenAI-compatible API architecture*
 
 ```html
 <p align="left">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Model%20Server-vLLM-orange?style=for-the-badge&logo=opsgenie&logoColor=white" alt="vLLM" />
-  <img src="https://img.shields.io/badge/Vision%20LLM-Qwen2--VL-red?style=for-the-badge" alt="Qwen2-VL" />
-  <img src="https://img.shields.io/badge/Embeddings-Ollama-black?style=for-the-badge" alt="Ollama" />
-  <img src="https://img.shields.io/badge/Vector%20Store-ChromaDB-blue?style=for-the-badge" alt="ChromaDB" />
-  <img src="https://img.shields.io/badge/Orchestration-LangChain-green?style=for-the-badge" alt="LangChain" />
+  <img src="https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Frontend-Streamlit-red?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit" />
+  <img src="https://img.shields.io/badge/LLM_Provider-Groq-orange?style=for-the-badge" alt="Groq" />
+  <img src="https://img.shields.io/badge/Embeddings-HuggingFace-yellow?style=for-the-badge" alt="HuggingFace" />
+  <img src="https://img.shields.io/badge/Vector_Store-ChromaDB-blue?style=for-the-badge" alt="ChromaDB" />
+  <img src="https://img.shields.io/badge/Orchestration-LangChain-green?style=for-the-badge&logo=langchain&logoColor=white" alt="LangChain" />
 </p>
 ```
 
 | Component | Technology / Model | Role in System | Deployment |
 | :--- | :--- | :--- | :--- |
-| **Document Parser** | `Unstructured.io` | Extract layout, text, tables, and images from PDFs | Local |
+| **User Interface** | `Streamlit` | Interactive dashboard with "Easy Build" (pre-indexed search) and "Upload Document" modes | Cloud / Local |
+| **Document Parser** | `Unstructured.io` | Extract layout, text, tables, and images using `hi_res` partitioning | Local |
 | **Orchestration** | `LangChain` | Query expansion, retrieval chains, and LLM orchestration | Local |
-| **Vision LLM** | `Qwen2-VL-7B-Instruct-AWQ` | Visual descriptions, query expansion & final synthesis | Local (served via `vLLM`) |
-| **Vector Store** | `ChromaDB` | Persistent indexing and semantic retrieval | Local |
-| **Embeddings** | `nomic-embed-text` | Generate vector representations of text chunks | Local (via `Ollama`) |
-| **Reranker** | `BAAI/bge-reranker-base` | Cross-encoder relevance scoring of candidate chunks | Local (via `sentence-transformers`) |
+| **Language Model** | `qwen/qwen3-32b` | Chunk summarization, query expansion, and final answer synthesis | Remote (Groq API) |
+| **Vector Store** | `ChromaDB` | Persistent indexing and semantic retrieval | Local / Persistent |
+| **Embeddings** | `BAAI/bge-small-en-v1.5` | Generate vector representations of text chunks | Local (CPU-friendly via HF) |
+| **Reranker** | `BAAI/bge-reranker-base` | Cross-encoder relevance scoring of candidate chunks | Local (CPU-friendly via HF) |
 
 ---
 
 ## ⚙️ Pipeline System Architecture
 
-To ensure high readability and maintain structural clarity, the architecture is split into two independent, sequential pipelines:
+The architecture is split into two independent, sequential pipelines to ensure structural clarity and layout awareness:
 
-### 1. Document Ingestion & Indexing Pipeline
+### 1. Document Ingestion & Indexing Pipeline (`ingestion_pipeline.py`)
 
-This pipeline recursively scans the target directory, extracts structural and visual elements, runs multimodal summaries on image-rich blocks, and generates vector indices.
+This pipeline scans document sources (or uploaded files), extracts structural and visual elements, runs layout-aware summaries on image/table-rich blocks, and generates vector indices.
 
 ```mermaid
 flowchart TD
-    A["Raw Enterprise Directory (test_documents/)"] --> B["Unstructured.io Layout Analyzer (hi_res)"]
+    A["Document Source (File/Upload)"] --> B["Unstructured.io Layout Analyzer (hi_res)"]
     
     B -->|Extract Text| C["Text Elements"]
     B -->|Extract Tables| D["HTML Tables"]
@@ -50,14 +55,14 @@ flowchart TD
     
     F --> G{"Contains Table or Image?"}
     
-    G -->|Yes| H["Local Qwen2-VL (via vLLM)"]
+    G -->|Yes| H["Qwen 32B (via Groq API)"]
     G -->|No| I["Raw Text Chunk"]
     
-    H -->|Vision Analysis| J["AI-Enhanced Semantic Summary"]
+    H -->|Vision/Layout Analysis| J["AI-Enhanced Semantic Summary"]
     
     I & J --> K["Compiled LangChain Documents"]
     
-    K --> L["Ollama Embeddings (nomic-embed-text)"]
+    K --> L["HuggingFace Embeddings (bge-small-en-v1.5)"]
     K --> M["JSON Export (chunks_export.json)"]
     
     L --> N[("ChromaDB Vector Store (dbs/chroma)")]
@@ -74,13 +79,13 @@ flowchart TD
     class N database;
 ```
 
-### 2. Advanced Multi-Query Retrieval & Synthesis Pipeline
+### 2. Advanced Multi-Query Retrieval & Synthesis Pipeline (`retrival_methods.py`)
 
-This pipeline takes user queries, expands them to capture multi-angle context, runs hybrid dense/sparse searches, blends results using Reciprocal Rank Fusion, rerank-compresses candidates, and synthesizes grounded answers.
+This pipeline takes the user query, expands it to capture multi-angle context, runs hybrid dense/sparse searches, blends results using Reciprocal Rank Fusion, rerank-compresses candidates, and synthesizes grounded answers while displaying the LLM's thinking process.
 
 ```mermaid
 flowchart TD
-    Query["User Query"] --> Expansion["Query Expansion (Qwen2-VL)"]
+    Query["User Query"] --> Expansion["Query Expansion (Qwen 32B via Groq)"]
     
     Expansion -->|Generate 3 Variations| Var["Query Variations"]
     
@@ -93,15 +98,15 @@ flowchart TD
     
     Ensemble --> RRF["Reciprocal Rank Fusion (RRF)"]
     
-    RRF --> Rerank["Cross-Encoder Reranking (BAAI/bge-reranker-base)"]
+    RRF --> Rerank["Cross-Encoder Reranking (bge-reranker-base)"]
     
     Rerank -->|Top 3 Chunks| Compiler["Multi-Modal Context Compiler"]
     
     Compiler -->|Text + HTML Tables + Base64 Images| Prompt["Rich Multi-Modal Prompt"]
     
-    Prompt --> Qwen["Qwen2-VL Synthesis (via vLLM)"]
+    Prompt --> Qwen["Qwen 32B Synthesis (via Groq)"]
     
-    Qwen --> Output["Factually Grounded Response"]
+    Qwen --> Output["Factually Grounded Response & Chain-of-Thought"]
 
     %% Styling
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
@@ -117,9 +122,9 @@ flowchart TD
 
 ---
 
-## 📂 Enterprise Corpus Structure (`test_documents`)
+## 📂 Enterprise Corpus Structure (`other documents`)
 
-The ingestion pipeline partitions and indexes the following structured folders representing various business units and domains:
+The ingestion pipeline partitions and indexes the structured folders representing various business units and domains:
 
 | Directory | Focus / Domain | Description / Content |
 | :--- | :--- | :--- |
@@ -141,80 +146,73 @@ The ingestion pipeline partitions and indexes the following structured folders r
 
 ---
 
-## 🎯 Key Achievements & Implementation Merits
+## 🎯 Key Pipeline Merits & Implementation Highlights
 
-* **Recursive Multi-Document Extraction**: Replaces flat single-file ingestion with directory-wide indexing across 15 custom domains.
-* **Hybrid & Diversity Retrieval**: Employs LangChain's `EnsembleRetriever` to fuse dense vector search (utilizing **Maximal Marginal Relevance (MMR)** for context diversity) with sparse BM25 lexical search (weighted `0.7` vector / `0.3` BM25).
-* **Multi-Query RRF Blending**: Expands the user query into 3 variations using LLM structured output, retrieves candidate documents for each, and blends the resulting ranks using **Reciprocal Rank Fusion (RRF)**.
-* **Cross-Encoder Reranking**: Re-scores candidate documents using a local `BAAI/bge-reranker-base` cross-encoder, compressing the context to the top 3 high-relevance chunks to avoid context stuffing and lower LLM inference latency.
-* **Layout Partitioning**: Isolates tabular data as raw HTML and visual assets as base64-encoded strings using the `unstructured` library's `hi_res` strategy.
+* **Dual-Mode Streamlit App (`main.py`)**:
+  * **Easy Build**: Direct query interface over the pre-indexed vector knowledge base.
+  * **Upload Document**: Allows uploading standard documents (`PDF`, `DOCX`, `PPTX`, `XLSX`, `CSV`) to parse, chunk, summarize, and index them on-the-fly for real-time querying.
+* **Layout-Aware Partitioning**: Uses the `unstructured` library's `hi_res` strategy to extract text blocks, isolate tabular data as raw HTML tables, and extract visual elements as base64-encoded strings.
+* **Smart Summarization**: Chunks containing tables or images are enhanced by generating an AI summary via `qwen/qwen3-32b` to preserve structural and visual context.
+* **Query Expansion & Hybrid Retrieval**: Expands the user query into 3 variations using structured output from Qwen. Retrieves candidate documents for each variation using an `EnsembleRetriever` combining dense vector search (with **Maximal Marginal Relevance (MMR)** for context diversity) and sparse **BM25** lexical search (weighted `0.7` vector / `0.3` BM25).
+* **Reciprocal Rank Fusion (RRF)**: Blends and re-scores candidates retrieved across all expanded query variations.
+* **Cross-Encoder Reranking**: Re-scores candidates using a local `BAAI/bge-reranker-base` cross-encoder to select the top 3 highest-relevance chunks, avoiding context-window stuffing and reducing LLM inference latency.
+* **Chain-of-Thought (CoT) Visibility**: Automatically captures and displays the model's `<think>` reasoning path inside a Streamlit expander component for complete transparency.
 
 ---
 
 ## 🚀 Setting Up the Environment
 
 ### 1. Install System Dependencies
-The extraction pipeline requires Poppler (for PDFs), Tesseract (for OCR), and libmagic (for file type identification).
+The extraction pipeline requires Poppler (for PDFs), Tesseract (for OCR), libmagic (for file type identification), LibreOffice (for office doc parsing), and Pandoc.
 
 **Linux (Debian/Ubuntu):**
 ```bash
 sudo apt-get update
-sudo apt-get install -y poppler-utils tesseract-ocr libmagic-dev
+sudo apt-get install -y poppler-utils tesseract-ocr libmagic-dev libreoffice pandoc
 ```
 
 **macOS:**
 ```bash
-brew install poppler tesseract libmagic
+brew install poppler tesseract libmagic libreoffice pandoc
 ```
 
 ### 2. Install Python Libraries
-Set up a virtual environment and install the required packages:
+This project uses `uv` for dependency management. Set up a virtual environment and install the required packages:
+
 ```bash
-python -m venv venv
-source venv/bin/activate
-pip install -U "unstructured[all-docs]" langchain_chroma langchain langchain-community langchain-openai python-dotenv langchain-ollama sentence-transformers langchain-cohere
+# Create virtual environment and sync packages
+uv venv
+source .venv/bin/activate
+uv pip install -r pyproject.toml
 ```
 
-### 3. Serve the Vision LLM (vLLM OpenAI-Compatible Server)
-Start the `Qwen2-VL-7B-Instruct-AWQ` model locally on port `8005` using `vLLM`:
-```bash
-python -m vllm.entrypoints.openai.api_server \
-    --model Qwen/Qwen2-VL-7B-Instruct-AWQ \
-    --port 8005 \
-    --api-key pranshu123
-```
-
-### 4. Run Ollama (for Embeddings)
-Make sure Ollama is running and the embedding model is active:
-```bash
-ollama run nomic-embed-text
-```
-
-### 5. Configure Environment Variables
-Create a `.env` file in the root folder of the project:
+### 3. Configure Environment Variables
+Create a `.env` file in the root directory of the project and add your Groq API key:
 ```env
-OPENAI_API_BASE="http://localhost:8005/v1"
-OPENAI_API_KEY="pranshu123"
+GROQ_API_KEY="your-groq-api-key-here"
 ```
 
 ---
 
-## 💻 Running the Pipeline
+## 💻 Running the Application & Scripts
 
-### Step 1: Ingestion & Vector Indexing
-To parse the recursive directories in `test_documents/` and index the enriched chunks:
+### Run the Streamlit Web Application
+To run the interactive RAG dashboard:
 ```bash
-python multi_modal_rag.py
+streamlit run main.py
+```
+
+### Run Standalone Ingestion
+To parse a document manually and build the vector database index:
+```bash
+python ingestion_pipeline.py
 ```
 
 > [!NOTE]
-> Documents in `test_documents/` are partitioned and semantic chunks are created. Any chunk containing a table/image triggers a Qwen2-VL vision request to generate a search description. The results are stored in the vector store at `dbs/chroma` and exported to `chunks_export.json`.
+> By default, the ingestion script processes documents, extracts their tables/images, generates AI summaries, and stores the persistent collection at `dbs/chroma` while exporting the chunk details to `chunks_export.json`.
 
-### Step 2: Advanced Retrieval & Multi-Modal Synthesis
-To query the database using the advanced pipeline (Multi-Query -> Hybrid MMR & BM25 -> RRF -> Cross-Encoder Reranking -> Qwen2-VL synthesis):
+### Run Standalone Retrieval Query
+To run a query in the terminal through the advanced multi-query, hybrid retrieval, RRF, and reranked pipeline:
 ```bash
 python retrival_methods.py
 ```
-
-> [!TIP]
-> The script loads the vector database from `dbs/chroma` and constructs the BM25 search index. It generates 3 variations of the query, retrieves candidates via the hybrid ensemble, fuses them using RRF, reranks them using `BAAI/bge-reranker-base` to output the top 3 candidates, and constructs a rich multi-modal prompt containing text, HTML tables, and images. The local Qwen2-VL model then generates a factually grounded answer.
