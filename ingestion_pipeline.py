@@ -2,6 +2,7 @@ import os
 import json
 from typing import List
 from dotenv import load_dotenv
+import time
 
 # LangChain and Unstructured imports
 from unstructured.partition.auto import partition
@@ -361,13 +362,13 @@ ANSWER:"""
         answer = self.generate_final_answer(retrieved_docs, query)
         return answer
 
-def run_ingestion_pipeline(file_path="test_documents"):
+def ingestion_pipeline(file_path="test_documents"):
     """Run the full ingestion pipeline: partition, chunk, summarise, export, and create vector store"""
+    time 
     self=MultiModalRAG()
     elements = self.partition_documents(file_path)
     chunks = self.create_chunks_by_title(elements)
     langchain_docs = self.summarise_chunks(chunks)
-    self.export_chunks_to_json(langchain_docs)
     self.create_vector_store(langchain_docs)
     return langchain_docs
     
