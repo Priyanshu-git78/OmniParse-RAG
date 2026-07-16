@@ -293,7 +293,7 @@ class MultiModalRAG:
         self.db = PGVector(
             embeddings=self.embeddings,
             collection_name= collection,
-            connection="postgresql://postgres.tiawlomnktpnwgeavonx:ManojUma781@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres",
+            connection=os.eviron["postgres_url"],
             use_jsonb = True
         )
         

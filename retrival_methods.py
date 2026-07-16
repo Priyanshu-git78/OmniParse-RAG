@@ -57,7 +57,7 @@ class retrival_pipeline:
         self.db = PGVector(
             embeddings=self.embedding_model,
             collection_name=collection,
-            connection = "postgresql://postgres.tiawlomnktpnwgeavonx:ManojUma781@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres",
+            connection = os.eviron["postgres_url"],
             use_jsonb= True
         )
         from sqlalchemy import text
@@ -67,7 +67,7 @@ class retrival_pipeline:
             SELECT document,cmetadata
             FROM langchain_pg_embedding
             WHERE collection_id = (
-            SELECT uuid FROM langchain_pg_collection WHERE name='DemoRAG')
+            SELECT uuid FROM langchain_pg_collection WHERE name={collection})
             """
                                       
             ))
