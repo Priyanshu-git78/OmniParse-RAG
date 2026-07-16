@@ -7,20 +7,17 @@ from textwrap import dedent
 from ingestion_pipeline import ingestion_pipeline
 import re
 from models import get_embedding_model, reranker_model
+from uuid import uuid4
 
-
-
-
-mode= st.segmented_control(
+mode = st.segmented_control(
     "choose Knowledge Source",
     ["Easy Build", "Upload Document"],
-    default="Easy Build",width="stretch"
+    default="Easy Build",
+    width="stretch",
 )
-if mode=="Easy Build":
+if mode == "Easy Build":
     st.set_page_config(
-        page_title="Easy Build Industry RAG",
-        page_icon="🤖",
-        layout="wide"
+        page_title="Easy Build Industry RAG", page_icon="🤖", layout="wide"
     )
 
     st.markdown(
@@ -42,12 +39,13 @@ if mode=="Easy Build":
     )
 
     st.divider()
-    query=st.chat_input("Enter Your Query")
+    query = st.chat_input("Enter Your Query")
     if query:
-        response, time_taken=main_retrival_pipeline(query)
+        response, time_taken = main_retrival_pipeline(query)
         st.markdown(response)
 if mode == "Upload Document":
-    st.markdown(dedent("""
+    st.markdown(
+        dedent("""
     <div style="text-align:center; padding:2rem 1rem 2.5rem 1rem;">
         <h1 style="
             font-size:2.4rem;
@@ -76,31 +74,33 @@ if mode == "Upload Document":
             Documents are indexed into the vector database after upload. Processing may take a few moments.
         </p>
     </div>
-    """), unsafe_allow_html=True)
+    """),
+        unsafe_allow_html=True,
+    )
 
     st.divider()
-    UPLOAD_DIR=Path("uploads")
+    UPLOAD_DIR = Path("uploads")
     UPLOAD_DIR.mkdir(exist_ok=True)
-    uploaded_file=st.file_uploader("Upload")
+    uploaded_file = st.file_uploader("Upload")
     if uploaded_file:
-        
-        file_path= UPLOAD_DIR/uploaded_file.name 
+
+        file_path = UPLOAD_DIR / uploaded_file.name
         with open(file_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
-        response,time_taken = ingestion_pipeline(str(file_path))
+        collection =str(uuid4)
+        response, time_taken = ingestion_pipeline(str(file_path),collection=collection)
         st.json(response, expanded=False)
         st.write(time_taken)
-    query=st.chat_input("Enter Your Query")
+    query = st.chat_input("Enter Your Query")
     if query:
-        response, time_taken=main_retrival_pipeline(query)
+        response, time_taken = main_retrival_pipeline(query,collection=collection)
         st.markdown(response)
 
-    
 
 get_embedding_model()
 reranker_model()
 
-#upload dir and logic 
+# upload dir and logic
 # UPLOAD_DIR= Path("uploads")
 # UPLOAD_DIR.mkdir(exist_ok=True)
 # uploaded_file=st.file_uploader("upload your documents for here (optional)")
@@ -110,5 +110,4 @@ reranker_model()
 #         f.write(uploaded_file.getbuffer())
 #         st.success(f"Saved: {file_path}")
 
-# uploaded Retrival to 
-
+# uploaded Retrival to

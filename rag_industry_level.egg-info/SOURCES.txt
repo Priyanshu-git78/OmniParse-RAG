@@ -1,0 +1,8 @@
+README.md
+ingestion_pipeline.py
+pyproject.toml
+rag_industry_level.egg-info/PKG-INFO
+rag_industry_level.egg-info/SOURCES.txt
+rag_industry_level.egg-info/dependency_links.txt
+rag_industry_level.egg-info/requires.txt
+rag_industry_level.egg-info/top_level.txt

@@ -7,7 +7,6 @@ import streamlit as st
 def reranker_model():
     model = HuggingFaceCrossEncoder(
         model_name="BAAI/bge-reranker-base", model_kwargs={"device": "cpu"}
-    
     )
     return model
 

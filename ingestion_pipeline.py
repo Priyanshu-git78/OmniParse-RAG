@@ -4,6 +4,7 @@ from typing import List
 from dotenv import load_dotenv
 import time
 from models import get_embedding_model
+
 # LangChain and Unstructured imports
 from unstructured.partition.auto import partition
 from unstructured.chunking.title import chunk_by_title
@@ -12,7 +13,7 @@ from langchain_core.documents import Document
 from langchain_core.messages import HumanMessage
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_chroma import Chroma
-
+from langchain_postgres import PGVector 
 # Load environment variables from .env file
 load_dotenv()
 from streamlit.runtime.scriptrunner import add_script_run_ctx
@@ -20,53 +21,53 @@ from streamlit.runtime.scriptrunner import add_script_run_ctx
 
 import streamlit as st
 
-# Configuration paths
-PDF_PATH = "1744086987764_infra_plywood_catalogue_1_.pdf"
-CHROMA_DB_DIR = "db/chroma_db"
-EXPORT_JSON_PATH = "chunks_export.json"
+# Configuration path
+
 
 class MultiModalRAG:
     def __init__(
         self,
-        pdf_path: str = PDF_PATH,
-        chroma_db_dir: str = "dbs/chroma",
-        export_json_path: str = EXPORT_JSON_PATH,
+        pdf_path: str =None,
+        export_json_path: str = "chunks_export.json",
         llm_model: str = "Qwen/Qwen2-VL-7B-Instruct-AWQ",
         llm_api_base: str = None,
         llm_api_key: str = None,
     ):
-        print(f"🔮 Initializing Embeddings:")
-        self.embedding_model = self.embeddings = get_embedding_model()
+        print(f" Initializing Embeddings:")
+        self.embeddings = get_embedding_model()
         self.pdf_path = pdf_path
-        self.chroma_db_dir = chroma_db_dir
         self.export_json_path = export_json_path
-        
+
         # Load API details from env if not provided
-        self.llm_api_base = llm_api_base or os.getenv("OPENAI_API_BASE", "http://localhost:8005/v1")
+        self.llm_api_base = llm_api_base or os.getenv(
+            "OPENAI_API_BASE", "http://localhost:8005/v1"
+        )
         self.llm_api_key = llm_api_key or os.getenv("OPENAI_API_KEY", "pranshu123")
         self.llm_model = llm_model
-        
+
         # Initialize vision-capable local LLM
         print(f"🤖 Initializing Chat Model: {self.llm_model} at {self.llm_api_base}")
-        self.llm=init_chat_model(
+        self.llm = init_chat_model(
             model="qwen/qwen3-32b",
             openai_api_base="https://api.groq.com/openai/v1",
             openai_api_key=os.environ["GROQ_API_KEY"],
             model_provider="openai",
             temperature=0.0,
         )
-        
+
         # Initialize local embeddings
-        
+
         # To store vector database connection
-        self.db = None
+
 
     def partition_documents(self, file_path: str = None):
-        path = file_path or self.pdf_path
+        path = file_path
         if os.path.isfile(path):
-            files=[path]
-        elif os.path.isdir(path):        
+            files = [path]
+            print(files)
+        elif os.path.isdir(path):
             files = []
+            print("path")
             for root, dirs, filenames in os.walk(path):
                 for f in filenames:
                     files.append(os.path.join(root, f))
@@ -74,13 +75,12 @@ class MultiModalRAG:
         #     print(f"❌ Error: {path} not found")
         #     return []   # return empty list, not None
 
-
         all_elements = []
-        target_extensions=(".docx",".xlsx",".csv",".pdf",".pptx")
+        target_extensions = (".docx", ".xlsx", ".csv", ".pdf", ".pptx")
         for file in files:
-            print(f"file exists:{file}")  
+            print(f"file exists:{file}")
             if file.lower().endswith(target_extensions):
-                print(f"file process try:{file}")                
+                print(f"file process try:{file}")
                 try:
                     print(f"📄 Partitioning document: {file}")
                     elements = partition(
@@ -96,7 +96,7 @@ class MultiModalRAG:
             else:
                 print(f"file format is not supported yet: {file}")
 
-        return all_elements   # always a list
+        return all_elements  # always a list
 
     def create_chunks_by_title(self, elements):
         """Create intelligent chunks using title-based strategy"""
@@ -105,7 +105,7 @@ class MultiModalRAG:
             elements,
             max_characters=3000,
             new_after_n_chars=2400,
-            combine_text_under_n_chars=500
+            combine_text_under_n_chars=500,
         )
         print(f"✅ Created {len(chunks)} chunks")
         return chunks
@@ -113,32 +113,36 @@ class MultiModalRAG:
     def separate_content_types(self, chunk):
         """Analyze what types of content are in a chunk"""
         content_data = {
-            'text': chunk.text,
-            'tables': [],
-            'images': [],
-            'types': ['text']
+            "text": chunk.text,
+            "tables": [],
+            "images": [],
+            "types": ["text"],
         }
 
-        if hasattr(chunk, 'metadata') and hasattr(chunk.metadata, 'orig_elements'):
+        if hasattr(chunk, "metadata") and hasattr(chunk.metadata, "orig_elements"):
             for element in chunk.metadata.orig_elements:
                 element_type = type(element).__name__
 
                 # Handle Tables
-                if element_type == 'Table':
-                    content_data['types'].append('table')
-                    table_html = getattr(element.metadata, 'text_as_html', element.text)
-                    content_data['tables'].append(table_html)
-                
+                if element_type == "Table":
+                    content_data["types"].append("table")
+                    table_html = getattr(element.metadata, "text_as_html", element.text)
+                    content_data["tables"].append(table_html)
+
                 # Handle Images
-                elif element_type == 'Image':
-                    if hasattr(element, 'metadata') and hasattr(element.metadata, 'image_base64'):
-                        content_data['types'].append('image')
-                        content_data['images'].append(element.metadata.image_base64)
-                        
-        content_data['types'] = list(set(content_data['types']))
+                elif element_type == "Image":
+                    if hasattr(element, "metadata") and hasattr(
+                        element.metadata, "image_base64"
+                    ):
+                        content_data["types"].append("image")
+                        content_data["images"].append(element.metadata.image_base64)
+
+        content_data["types"] = list(set(content_data["types"]))
         return content_data
 
-    def create_ai_enhanced_summary(self, text: str, tables: List[str], images: List[str]) -> str:
+    def create_ai_enhanced_summary(
+        self, text: str, tables: List[str], images: List[str]
+    ) -> str:
         """Create AI-enhanced summary for mixed content using local Qwen-VL model"""
         try:
             prompt_text = f"""You are creating a searchable description for document content retrieval.
@@ -147,13 +151,13 @@ class MultiModalRAG:
                 TEXT CONTENT:
                 {text}
                 """
-            
+
             # Add tables if present
             if tables:
                 prompt_text += "\nTABLES:\n"
                 for i, table in enumerate(tables):
                     prompt_text += f"Table {i+1}:\n{table}\n\n"
-                
+
                 prompt_text += """
             YOUR TASK:
             Generate a comprehensive, searchable description that covers:
@@ -173,11 +177,13 @@ class MultiModalRAG:
             # Add images to the message payload and prepend placeholders
             for image_base64 in images:
                 message_content[0]["text"] = "<image>\n" + message_content[0]["text"]
-                message_content.append({
-                    "type": "image_url",
-                    "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}
-                })
-            
+                message_content.append(
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"},
+                    }
+                )
+
             message = HumanMessage(content=message_content)
             response = self.llm.invoke([message])
             return response.content
@@ -191,56 +197,73 @@ class MultiModalRAG:
                 summary += f" [Contains {len(images)} image(s)]"
             return summary
 
-    def summarise_chunks(self, chunks):
+    def summarise_chunks(self, chunks,collection="DemoRAG"):
         """Process all chunks with AI Summaries"""
         print("🧠 Processing chunks with AI Summaries...")
         langchain_documents = []
         total_chunks = len(chunks)
+        print(total_chunks)
         progress_bar = st.progress(0)
         for i, chunk in enumerate(chunks):
             current_chunk = i + 1
             print(f"   Processing chunk {current_chunk}/{total_chunks}")
-            
-            progress_bar.progress(current_chunk/total_chunks)
+
+            progress_bar.progress(current_chunk / total_chunks)
 
             # Analyze chunk content
             content_data = self.separate_content_types(chunk)
 
             print(f"     Types found: {content_data['types']}")
-            print(f"     Tables: {len(content_data['tables'])}, Images: {len(content_data['images'])}")
+            print(
+                f"     Tables: {len(content_data['tables'])}, Images: {len(content_data['images'])}"
+            )
 
             # Create AI-enhanced Summary if chunk has tables or images
-            if content_data['tables'] or content_data['images']:
+            if content_data["tables"] or content_data["images"]:
                 print("     → Creating AI summary for mixed content...")
                 try:
                     enhanced_content = self.create_ai_enhanced_summary(
-                        content_data['text'],
-                        content_data['tables'],
-                        content_data['images'],
+                        content_data["text"],
+                        content_data["tables"],
+                        content_data["images"],
                     )
                     print("     → AI summary completed")
-                    print(f"     → Enhanced content preview: {enhanced_content[:200]}...")
+                    print(
+                        f"     → Enhanced content preview: {enhanced_content[:200]}..."
+                    )
                 except Exception as e:
-                    print(f"     ❌ AI summary failed with error: {e}, falling back to raw text")
-                    enhanced_content = content_data['text']
+                    print(
+                        f"     ❌ AI summary failed with error: {e}, falling back to raw text"
+                    )
+                    enhanced_content = content_data["text"]
             else:
                 print("     → Using raw text (no tables/images)")
-                enhanced_content = content_data['text']
-            
+                enhanced_content = content_data["text"]
+
             doc = Document(
-                page_content=enhanced_content, 
+                page_content=enhanced_content,
                 metadata={
-                    "original_content": json.dumps({
-                        "raw_text": content_data['text'],
-                        "tables_html": content_data['tables'],
-                        "images_base64": content_data['images']
-                    })
-                }
+                    "original_content": json.dumps(
+                        {
+                            "raw_text": content_data["text"],
+                            "tables_html": content_data["tables"],
+                            "images_base64": content_data["images"],
+                        }
+                    )
+                },
             )
             langchain_documents.append(doc)
         progress_bar.empty()
+        print(langchain_documents)
+    
+        database=self.create_vector_store(collection)
+        database.add_documents(langchain_documents)
         print(f"✅ Processed {len(langchain_documents)} chunks")
         return langchain_documents
+
+# Example: reshaping a chunk into a cleaner Document
+
+    
 
     def export_chunks_to_json(self, chunks, filename=None):
         """Export processed chunks to clean JSON format"""
@@ -251,142 +274,140 @@ class MultiModalRAG:
                 "chunk_id": i + 1,
                 "enhanced_content": doc.page_content,
                 "metadata": {
-                    "original_content": json.loads(doc.metadata.get("original_content", "{}"))
-                }
+                    "original_content": json.loads(
+                        doc.metadata.get("original_content", "{}")
+                    )
+                },
             }
             export_data.append(chunk_data)
-        
-        with open(path, 'w', encoding='utf-8') as f:
+
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(export_data, f, indent=2, ensure_ascii=False)
         print(f"✅ Exported {len(export_data)} chunks to {path}")
         return export_data
 
-    def create_vector_store(self, documents, persist_directory=None):
-        """Create and persist ChromaDB vector store using local embeddings"""
-        path = persist_directory or self.chroma_db_dir
-        print(f"🔮 Creating embeddings and storing in ChromaDB at {path}...")
-        self.db = Chroma.from_documents(
-            documents=documents,
-            embedding=self.embeddings,
-            persist_directory=path, 
-            collection_metadata={"hnsw:space": "cosine"}
+    def create_vector_store(self,collection):
+        """Create and persist PG vector store using Supabase"""
+        
+
+        self.db = PGVector(
+            embeddings=self.embeddings,
+            collection_name= collection,
+            connection="postgresql://postgres.tiawlomnktpnwgeavonx:ManojUma781@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres",
+            use_jsonb = True
         )
-        print(f"✅ Vector store created and saved to {path}")
+        
+        
         return self.db
 
-    def load_vector_store(self, persist_directory=None):
-        """Load an existing ChromaDB vector store"""
-        path = persist_directory or self.chroma_db_dir
-        print(f"📂 Loading existing ChromaDB vector store from {path}...")
-        self.db = Chroma(
-            persist_directory=path,
-            embedding_function=self.embeddings
-        )
-        print(f"✅ Vector store loaded successfully from {path}")
-        return self.db
+  
 
-    def retrieve_documents(self, query: str, k: int = 2):
-        """Retrieve top k relevant documents for a given query"""
-        if not self.db:
-            self.load_vector_store()
-        
-        retriever = self.db.as_retriever(search_kwargs={"k": k})
-        return retriever.invoke(query)
+#     def retrieve_documents(self, query: str, k: int = 2):
+#         """Retrieve top k relevant documents for a given query"""
 
-    def generate_final_answer(self, chunks, query):
-        """Generate final answer using multimodal content and local Qwen-VL model"""
-        try:
-            # Build the base prompt
-            prompt_text = f"""Based on the following documents, please answer this question: {query}
+#         retriever = self.db.as_retriever(search_kwargs={"k": k})
+#         return retriever.invoke(query)
 
-CONTENT TO ANALYZE:
-"""
-            # Append retrieved documents, tables and text
-            for i, chunk in enumerate(chunks):
-                prompt_text += f"--- Document {i+1} ---\n"
-                
-                if "original_content" in chunk.metadata:
-                    original_data = json.loads(chunk.metadata["original_content"])
-                    
-                    # Add raw text
-                    raw_text = original_data.get("raw_text", "")
-                    if raw_text:
-                        prompt_text += f"TEXT:\n{raw_text}\n\n"
-                    
-                    # Add tables as HTML
-                    tables_html = original_data.get("tables_html", [])
-                    if tables_html:
-                        prompt_text += "TABLES:\n"
-                        for j, table in enumerate(tables_html):
-                            prompt_text += f"Table {j+1}:\n{table}\n\n"
-                
-                prompt_text += "\n"
-            
-            prompt_text += """
-Please provide a clear, comprehensive answer using the text, tables, and images above. If the documents don't contain sufficient information to answer the question, say "I don't have enough information to answer that question based on the provided documents."
+#     def generate_final_answer(self, chunks, query):
+#         """Generate final answer using multimodal content and local Qwen-VL model"""
+#         try:
+#             # Build the base prompt
+#             prompt_text = f"""Based on the following documents, please answer this question: {query}
 
-ANSWER:"""
+# CONTENT TO ANALYZE:
+# """
+#             # Append retrieved documents, tables and text
+#             for i, chunk in enumerate(chunks):
+#                 prompt_text += f"--- Document {i+1} ---\n"
 
-            # Build message content starting with text
-            message_content = [{"type": "text", "text": prompt_text}]
-            
-            # Add all images from all chunks and prepend placeholders
-            for chunk in chunks:
-                if "original_content" in chunk.metadata:
-                    original_data = json.loads(chunk.metadata["original_content"])
-                    images_base64 = original_data.get("images_base64", [])
-                    
-                    for image_base64 in images_base64:
-                        message_content[0]["text"] = "<image>\n" + message_content[0]["text"]
-                        message_content.append({
-                            "type": "image_url",
-                            "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}
-                        })
-            
-            message = HumanMessage(content=message_content)
-            response = self.llm.invoke([message])
-            return response.content
-            
-        except Exception as e:
-            print(f"❌ Answer generation failed: {e}")
-            return "Sorry, I encountered an error while generating the final answer."
+#                 if "original_content" in chunk.metadata:
+#                     original_data = json.loads(chunk.metadata["original_content"])
 
-    def query(self, query: str, k: int = 2) -> str:
-        """End-to-end retrieval and answer generation for a given query"""
-        retrieved_docs = self.retrieve_documents(query, k)
-        
-        print("\n--- Retrieved Documents ---")
-        for idx, doc in enumerate(retrieved_docs):
-            print(f"\n[Document {idx+1}]")
-            print(doc.page_content[:300] + "...")
-            
-        print("\n--- Generating Final Answer ---")
-        answer = self.generate_final_answer(retrieved_docs, query)
-        return answer
+#                     # Add raw text
+#                     raw_text = original_data.get("raw_text", "")
+#                     if raw_text:
+#                         prompt_text += f"TEXT:\n{raw_text}\n\n"
 
-def ingestion_pipeline(file_path="test_documents"):
+#                     # Add tables as HTML
+#                     tables_html = original_data.get("tables_html", [])
+#                     if tables_html:
+#                         prompt_text += "TABLES:\n"
+#                         for j, table in enumerate(tables_html):
+#                             prompt_text += f"Table {j+1}:\n{table}\n\n"
+
+#                 prompt_text += "\n"
+
+#             prompt_text += """
+# Please provide a clear, comprehensive answer using the text, tables, and images above. If the documents don't contain sufficient information to answer the question, say "I don't have enough information to answer that question based on the provided documents."
+
+# ANSWER:"""
+
+#             # Build message content starting with text
+#             message_content = [{"type": "text", "text": prompt_text}]
+
+#             # Add all images from all chunks and prepend placeholders
+#             for chunk in chunks:
+#                 if "original_content" in chunk.metadata:
+#                     original_data = json.loads(chunk.metadata["original_content"])
+#                     images_base64 = original_data.get("images_base64", [])
+
+#                     for image_base64 in images_base64:
+#                         message_content[0]["text"] = (
+#                             "<image>\n" + message_content[0]["text"]
+#                         )
+#                         message_content.append(
+#                             {
+#                                 "type": "image_url",
+#                                 "image_url": {
+#                                     "url": f"data:image/jpeg;base64,{image_base64}"
+#                                 },
+#                             }
+#                         )
+
+#             message = HumanMessage(content=message_content)
+#             response = self.llm.invoke([message])
+#             return response.content
+
+#         except Exception as e:
+#             print(f"❌ Answer generation failed: {e}")
+#             return "Sorry, I encountered an error while generating the final answer."
+
+#     def query(self, query: str, k: int = 2) -> str:
+#         """End-to-end retrieval and answer generation for a given query"""
+#         retrieved_docs = self.retrieve_documents(query, k)
+
+#         print("\n--- Retrieved Documents ---")
+#         for idx, doc in enumerate(retrieved_docs):
+#             print(f"\n[Document {idx+1}]")
+#             print(doc.page_content[:300] + "...")
+
+#         print("\n--- Generating Final Answer ---")
+#         answer = self.generate_final_answer(retrieved_docs, query)
+#         return answer
+
+
+def ingestion_pipeline(file_path="test_documents",collection="DemoRAG"):
     """Run the full ingestion pipeline: partition, chunk, summarise, export, and create vector store"""
-    start=time.perf_counter()
-    self=MultiModalRAG()
+    start = time.perf_counter()
+    self = MultiModalRAG()
+
     def elapsed():
         return f"{time.perf_counter()-start:.1f}s"
-    
 
-    placeholder= st.empty()
+    placeholder = st.empty()
     placeholder.write(f"document processing... {elapsed()}")
     elements = self.partition_documents(file_path)
     placeholder.write(f"creating chunks... {elapsed()}")
     chunks = self.create_chunks_by_title(elements)
-    
+
     placeholder.write(f"generating AI summary of chunks...")
-    langchain_docs = self.summarise_chunks(chunks)
+    langchain_docs = self.summarise_chunks(chunks,collection)
     placeholder.write(f"Your Documents Process : Ask any query")
-    self.create_vector_store(langchain_docs)
     end = time.perf_counter()
-    time_taken=end-start
+    time_taken = end - start
     placeholder
     return langchain_docs, time_taken
-    
+
 
 if __name__ == "__main__":
-    ingestion_pipeline("uploads/Tally Claude AI proposal.docx")
+    ingestion_pipeline()
