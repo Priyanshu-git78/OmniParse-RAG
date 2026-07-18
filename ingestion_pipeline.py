@@ -48,7 +48,7 @@ class MultiModalRAG:
         # Initialize vision-capable local LLM
         print(f"🤖 Initializing Chat Model: {self.llm_model} at {self.llm_api_base}")
         self.llm = init_chat_model(
-            model="qwen/qwen3-32b",
+            model="qwen/qwen3.6-27b",
             openai_api_base="https://api.groq.com/openai/v1",
             openai_api_key=os.environ["GROQ_API_KEY"],
             model_provider="openai",

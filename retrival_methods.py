@@ -117,14 +117,17 @@ class retrival_pipeline:
             queries: list[str]
 
         llm_with_tool = self.llm.with_structured_output(
-            Queryvariations, method="function_calling"
+            Queryvariations, method="json_mode"
         )
 
         prompt = f"""Generate 3 different variations of this query that would help retrieve relevant documents:
 
         Original query: {self.original_query}
 
-        Return 3 alternative queries that rephrase or approach the same question from different angles."""
+        Return 3 alternative queries that rephrase or approach the same question from different angles.
+        Respond ONLY with a valid JSON object matching this format, no extra text:
+        {{"queries": ["variation 1", "variation 2", "variation 3"]}}
+        """
 
         response = llm_with_tool.invoke(prompt)
 
