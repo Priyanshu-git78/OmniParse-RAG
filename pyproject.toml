@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "datasets>=5.0.0",
     "en-core-web-sm",
     "jupyter>=1.1.1",
     "lab>=8.10",

@@ -65,9 +65,10 @@ class retrival_pipeline:
             SELECT document,cmetadata
             FROM langchain_pg_embedding
             WHERE collection_id = (
-            SELECT uuid FROM langchain_pg_collection WHERE name=:collection)
-            """),{'collection':collection}
-            )
+            SELECT uuid FROM langchain_pg_collection WHERE name={collection})
+            """
+                                      
+            ))
             rows = result.fetchall()
         self.documents = [
             Document(page_content= row[0],metadata=row[1] or {})
