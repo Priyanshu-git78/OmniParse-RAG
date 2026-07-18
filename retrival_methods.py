@@ -39,7 +39,7 @@ class retrival_pipeline:
 
     def __init__(self,collection):
         self.llm = init_chat_model(
-            model="qwen/qwen3-32b",
+            model="qwen/qwen3.6-27b",
             openai_api_base="https://api.groq.com/openai/v1",
             openai_api_key=os.environ["GROQ_API_KEY"],
             model_provider="openai",
