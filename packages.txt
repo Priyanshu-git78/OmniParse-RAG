@@ -4,4 +4,4 @@ libreoffice
 pandoc
 tesseract-ocr
 poppler-utils
-libmagic1
+file
