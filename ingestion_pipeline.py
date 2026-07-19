@@ -238,7 +238,7 @@ class MultiModalRAG:
             langchain_documents.append(doc)
         progress_bar.empty()
         print(langchain_documents)
-    
+        
         database=self.create_vector_store(collection)
         database.add_documents(langchain_documents)
         print(f"✅ Processed {len(langchain_documents)} chunks")
