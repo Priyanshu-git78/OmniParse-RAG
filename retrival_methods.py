@@ -2,8 +2,7 @@ from dotenv import load_dotenv
 
 # import mlflow
 import re
-from models import get_embedding_model, reranker_model
-
+from models import get_embedding_model, reranker_model, build_llms ,build_structured_llm
 import json
 import time
 from pydantic import BaseModel
@@ -37,19 +36,16 @@ load_dotenv()
 
 class retrival_pipeline:
 
-    def __init__(self,collection):
-        self.llm = init_chat_model(
-            model="qwen/qwen3.6-27b",
-            openai_api_base="https://api.groq.com/openai/v1",
-            openai_api_key=os.environ["GROQ_API_KEY"],
-            model_provider="openai",
-            temperature=0.0,
-        )
+    def __init__(self,collection="DemoRAG"):
+        #llm for fallbacking system
+        self.llm_grok, self.llm_open_router, self.local_vllm = build_llms()
+        self.llm = self.llm_grok.with_fallbacks([self.llm_open_router, self.local_vllm])
+
 
         self.original_query = "what is Easy Build revenue, profit and Sales"
         
         
-        self.persistent_directory = "dbs/chroma"
+        #initializing the embedding model
         self.embedding_model = get_embedding_model()
 
         self.db = PGVector(
@@ -93,7 +89,12 @@ class retrival_pipeline:
 
         # intialize the reranker model from transformers
         self.cross_encoder = reranker_model()
+    
+    
+    def get_structured_llm(self,schema, method=None):
+        return build_structured_llm(self.llm_grok,self.llm_open_router,self.local_vllm,schema,method=method)
 
+    
     def hybrid_retriver(self):
         bm25_retriever = BM25Retriever.from_documents(self.documents)
         bm25_retriever.k = self.k
@@ -116,7 +117,7 @@ class retrival_pipeline:
         class Queryvariations(BaseModel):
             queries: list[str]
 
-        llm_with_tool = self.llm.with_structured_output(
+        llm_with_tool = self.get_structured_llm(
             Queryvariations, method="json_mode"
         )
 

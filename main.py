@@ -30,8 +30,8 @@ if mode == "Easy Build":
                 Easy Build AI Knowledge Assistant
             </h3>
             <p style="font-size:18px; color:#888;">
-                Ask questions about AI Easy Build documents indexed in the vector database.
-                Responses are generated using Retrieval-Augmented Generation (RAG).
+                All the documents are AI-based which are publicly available about Easy Build.
+                and confidential information is madup
             </p>
         </div>
         """,

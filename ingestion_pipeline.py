@@ -3,7 +3,7 @@ import json
 from typing import List
 from dotenv import load_dotenv
 import time
-from models import get_embedding_model
+from models import get_embedding_model,build_llms,build_structured_llm
 
 # LangChain and Unstructured imports
 from unstructured.partition.auto import partition
@@ -27,37 +27,23 @@ import streamlit as st
 class MultiModalRAG:
     def __init__(
         self,
-        pdf_path: str =None,
         export_json_path: str = "chunks_export.json",
-        llm_model: str = "Qwen/Qwen2-VL-7B-Instruct-AWQ",
         llm_api_base: str = None,
         llm_api_key: str = None,
     ):
         print(f" Initializing Embeddings:")
         self.embeddings = get_embedding_model()
-        self.pdf_path = pdf_path
         self.export_json_path = export_json_path
 
         # Load API details from env if not provided
         self.llm_api_base = llm_api_base or os.getenv(
             "OPENAI_API_BASE", "http://localhost:8005/v1"
         )
-        self.llm_api_key = llm_api_key or os.getenv("OPENAI_API_KEY", "pranshu123")
-        self.llm_model = llm_model
-
-        # Initialize vision-capable local LLM
-        print(f"🤖 Initializing Chat Model: {self.llm_model} at {self.llm_api_base}")
-        self.llm = init_chat_model(
-            model="qwen/qwen3.6-27b",
-            openai_api_base="https://api.groq.com/openai/v1",
-            openai_api_key=os.environ["GROQ_API_KEY"],
-            model_provider="openai",
-            temperature=0.0,
-        )
-
-        # Initialize local embeddings
-
-        # To store vector database connection
+        
+        # Initialize vision-capable models API with fallbacks
+        self.llm_grok,self.llm_openrouter,self.lazyload=build_llms()
+        self.llm = self.llm_grok.with_fallbacks([self.llm_open_router, self.local_llm_lazy])
+      
 
 
     def partition_documents(self, file_path: str = None):

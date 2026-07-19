@@ -26,11 +26,10 @@ questions = [
 
 ground_truths =[
     "B2B2C online channel platfrom",
-    "Easy Build is capture the raw material market in Noida"
-    "Noida Sector 16"
+    "Easy Build is capture the raw material market in Noida",
+    "Noida Sector 16",
 ]
 
-pipe =retrival_pipeline()
 
 rows =[]
 for question, ground_truth in zip(questions, ground_truths):
@@ -43,4 +42,28 @@ for question, ground_truth in zip(questions, ground_truths):
     }
     )
 
-evaluation_dataset= Dataset.fromlist(rows)
+evaluation_dataset= Dataset.from_list(rows)
+
+from ragas import evaluate
+from ragas.metrics import (
+    answer_correctness,
+    answer_revlevancy,
+    faithfulness,
+    context_precision,
+    context_recall,
+)
+
+
+
+scores = evaluate(
+    evaluation_dataset,
+    metrics=[
+        answer_correctness,
+        answer_relevancy,
+        faithfulness,
+        context_precision,
+        context_recall,
+    ]
+)
+print(rows)
+print(scores)
