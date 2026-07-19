@@ -36,12 +36,9 @@ class MultiModalRAG:
         self.export_json_path = export_json_path
 
         # Load API details from env if not provided
-        self.llm_api_base = llm_api_base or os.getenv(
-            "OPENAI_API_BASE", "http://localhost:8005/v1"
-        )
         
         # Initialize vision-capable models API with fallbacks
-        self.llm_grok,self.llm_openrouter,self.lazyload=build_llms()
+        self.llm_grok,self.llm_open_router,self.local_llm_lazy=build_llms()
         self.llm = self.llm_grok.with_fallbacks([self.llm_open_router, self.local_llm_lazy])
       
 
