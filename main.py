@@ -31,7 +31,7 @@ if mode == "Easy Build":
             </h3>
             <p style="font-size:18px; color:#888;">
                 All the documents are AI-based which are publicly available about Easy Build.
-                and confidential information is madup
+                and confidential information is madeup
             </p>
         </div>
         """,
