@@ -51,7 +51,7 @@ class retrival_pipeline:
         self.db = PGVector(
             embeddings=self.embedding_model,
             collection_name=collection,
-            connection = os.environ["postgres_url"],
+            connection = os.environ["DATABASE_URL"],
             use_jsonb= True
         )
         from sqlalchemy import text

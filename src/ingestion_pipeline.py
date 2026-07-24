@@ -275,7 +275,7 @@ class MultiModalRAG:
         self.db = PGVector(
             embeddings=self.embeddings,
             collection_name= collection,
-            connection=os.environ["postgres_url"],
+            connection=os.environ["DATABASE_URL"],
             use_jsonb = True
         )
         
