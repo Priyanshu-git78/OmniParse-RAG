@@ -35,6 +35,7 @@ dependencies = [
     "thinc>=8.3",
     "transformers>=5.13.0",
     "unstructured[docx,pdf,pptx,xlsx]>=0.24.0",
+    "pytest>=9.1.1",
 ]
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -45,7 +46,10 @@ url = "https://pypi.nvidia.com/simple"
 [tool.uv.sources]
 en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }
 [tool.setuptools]
-py-modules = ["ingestion_pipeline"]
 
-[tool.setuptools.packages.find]
-include = ["models", "retrival_methods"]
+[tool.pytest.ini_options]
+markers = [
+    "integration: real API calls, needs live services",
+    "unit: fast unit tests, no API calls",
+    "slow: slow running tests",
+]

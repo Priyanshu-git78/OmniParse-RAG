@@ -18,6 +18,10 @@ jobs:
     test:
         runs-on: ubuntu-latest
 
+        env:
+            DATABASEURL : ${{ secrets.DATABASE_URL }}
+            GROQ_API_KEY : ${{ secrets.GROQ_API_KEY}}
+            OPENROUTER_API_KEY : ${{secrets.OPENROUTER_API_KEY}}
 
         steps:
             # Step 1 : check out the code from the repository
@@ -32,7 +36,7 @@ jobs:
             
             # Step 3 : Install uv
             - name : Install uv
-            uses: astral-sh/setup-uv@3
+            uses: astral-sh/setup-uv@v3
             # step  3 : install uv env
             - name : Install UV
             run : uv sync
