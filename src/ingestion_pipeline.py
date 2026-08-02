@@ -15,10 +15,10 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain_postgres import PGVector 
 # Load environment variables from .env file
 load_dotenv()
-from streamlit.runtime.scriptrunner import add_script_run_ctx
-
 
 import streamlit as st
+from langsmith import traceable
+
 
 # Configuration path
 
@@ -41,7 +41,7 @@ class MultiModalRAG:
         self.llm = self.llm_grok.with_fallbacks([self.llm_open_router, self.local_llm_lazy])
       
 
-
+    @traceable(name="partition_documents",project_name="Injestion_pipeline")
     def partition_documents(self, file_path: str = None):
         path = file_path
         if os.path.isfile(path):
@@ -80,6 +80,7 @@ class MultiModalRAG:
 
         return all_elements  # always a list
 
+    @traceable(name="create_chunks_by_title",project_name="Injestion_pipeline")
     def create_chunks_by_title(self, elements):
         """Create intelligent chunks using title-based strategy"""
         print("🔨 Creating smart chunks...")
@@ -92,6 +93,7 @@ class MultiModalRAG:
         print(f"✅ Created {len(chunks)} chunks")
         return chunks
 
+    @traceable(name="separate_content_types",project_name="Injestion_pipeline")
     def separate_content_types(self, chunk):
         """Analyze what types of content are in a chunk"""
         content_data = {
@@ -122,6 +124,7 @@ class MultiModalRAG:
         content_data["types"] = list(set(content_data["types"]))
         return content_data
 
+    @traceable(name="create_ai_enhanced_summary",project_name="Injestion_pipeline")
     def create_ai_enhanced_summary(
         self, text: str, tables: List[str], images: List[str]
     ) -> str:
@@ -179,6 +182,7 @@ class MultiModalRAG:
                 summary += f" [Contains {len(images)} image(s)]"
             return summary
 
+    @traceable(name="summarise_chunks",project_name="Injestion_pipeline")
     def summarise_chunks(self, chunks,collection="DemoRAG"):
         """Process all chunks with AI Summaries"""
         print("🧠 Processing chunks with AI Summaries...")
@@ -268,6 +272,7 @@ class MultiModalRAG:
         print(f"✅ Exported {len(export_data)} chunks to {path}")
         return export_data
 
+    @traceable(name="create_vector_store",project_name="Injestion_pipeline")
     def create_vector_store(self,collection):
         """Create and persist PG vector store using Supabase"""
         

@@ -52,6 +52,8 @@ def get_embedding_model():
 #     """Wrapper downloded only happens on actual invocation""" 
 #     llm = _load_local_llm()
 #     return llm.invoke(input_, **kwargs)
+
+
 def build_llms():
     """Call this exactly once when your app starts."""
     llm_grok = init_chat_model(
@@ -68,8 +70,8 @@ def build_llms():
         model_provider="openai",
         temperature=0.0,
     )
-    llm_vllm = init_chat_model(
-        model="Qwen/Qwen3-14B-AWQ",
+    vllm = init_chat_model(
+        model="Qwen/Qwen2-VL-7B-Instruct-AWQ",
         openai_api_base="http://localhost:8005/v1",
         openai_api_key="pranshu123",
         model_provider="openai",
@@ -79,7 +81,9 @@ def build_llms():
 
     # local_llm_lazy = RunnableLambda(_local_llm_runnable)
 
-    return llm_grok, llm_open_router, llm_vllm
+    return llm_grok, llm_open_router, vllm
+
+
 def build_structured_llm(llm_grok, llm_open_router, local_vllm,schema, method=None):
     kwargs = {"method": method} if method else {}
     return llm_grok.with_structured_output(schema, **kwargs).with_fallbacks(

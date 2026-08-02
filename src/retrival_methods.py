@@ -8,24 +8,22 @@ import time
 from pydantic import BaseModel
 from collections import defaultdict
 
-# Load a local open-source cross-encoder model
-
+# tracing
+import traceback
 # Lanchain dependencies
 from langchain_classic.retrievers.document_compressors import CrossEncoderReranker
 
-from langchain_community.cross_encoders import HuggingFaceCrossEncoder
-from langchain_huggingface import HuggingFaceEmbeddings
 
 
-from langchain.chat_models import init_chat_model
 from langchain_classic.retrievers import EnsembleRetriever
 from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document
-from langchain_cohere import CohereRerank
-from langchain_core.messages import SystemMessage, HumanMessage
+
+from langchain_core.messages import  HumanMessage
 import streamlit as st
 import os
 from langchain_postgres import PGVector
+from langsmith import traceable
 
 load_dotenv()
 
@@ -109,6 +107,7 @@ class retrival_pipeline:
         print("-----Hybrid Retriever intialised")
         return self.hybrid_retriever
 
+    @traceable(name="Multiquery_RRM")
     def multiquery_RRM(self, original_query):
 
         if original_query:
@@ -150,6 +149,7 @@ class retrival_pipeline:
         print("Multi-Quewry Retrivel Complete")
         return self.all_retrieval_results
 
+    @traceable(name="reciprocal_rank_fusion")
     def reciprocal_rank_fusion(self, chunk_lists, k=60, verbose=True):
         if verbose:
             print("\n" + "=" * 60)
@@ -211,6 +211,7 @@ class retrival_pipeline:
 
         # Apply RRF to our retrieval results
 
+    @traceable(name="reranker_chunks")
     def reranker_chunks(self):
         reranker = CrossEncoderReranker(
             model=self.cross_encoder, top_n=self.reranker_k_no
@@ -231,7 +232,8 @@ class retrival_pipeline:
             print(f"{i:2d}. {doc.page_content[:80]}")
 
         return self.reranked_docs
-
+    
+    @traceable(name="generate_final_answer")
     def generate_final_answer(self, chunks=None, query=None):
         """Generate final answer using multimodal content and local Qwen-VL model"""
         if chunks is None:
@@ -296,9 +298,12 @@ ANSWER:"""
                                 },
                             }
                         )
-
+            
             message = HumanMessage(content=message_content)
-            response = self.llm.invoke([message])
+            try:
+               response= self.llm.invoke([message])
+            except Exception as e:
+                response=traceback.print_exc()
             return response.content
         except json.JSONDecodeError as e:
             print("not sucessful{e}")
