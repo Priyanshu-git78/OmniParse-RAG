@@ -3,7 +3,7 @@ import streamlit as st
 from pathlib import Path
 from textwrap import dedent
 from ingestion_pipeline import ingestion_pipeline
-from models import get_embedding_model, reranker_model
+from src.Config import get_embedding_model, reranker_model
 from uuid import uuid4
 
 mode = st.segmented_control(

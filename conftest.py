@@ -133,7 +133,7 @@ def real_llms():
     """
     if os.getenv("INTEGRATION") != "true":
         pytest.skip("Skipping real API test. Set INTEGRATION=true to run.")
-    from src.models import build_llms
+    from src.Config import build_llms
     return build_llms()
 
 # conftest.py

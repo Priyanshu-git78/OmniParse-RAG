@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 
 # import mlflow
 import re
-from models import get_embedding_model, reranker_model, build_llms ,build_structured_llm
+from src.Config import get_embedding_model, reranker_model, build_llms ,build_structured_llm
 import json
 import time
 from pydantic import BaseModel

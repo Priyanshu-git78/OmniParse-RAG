@@ -1,4 +1,4 @@
-from src.models import build_llms
+from src.Config import build_llms
 
 build_llms()
 

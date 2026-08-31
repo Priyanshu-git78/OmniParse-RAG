@@ -3,7 +3,7 @@ import json
 from typing import List
 from dotenv import load_dotenv
 import time
-from models import get_embedding_model,build_llms,build_structured_llm
+from src.Config import get_embedding_model,build_llms,build_structured_llm
 
 # LangChain and Unstructured imports
 from unstructured.partition.auto import partition

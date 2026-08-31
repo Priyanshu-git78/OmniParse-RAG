@@ -71,11 +71,12 @@ def build_llms():
         temperature=0.0,
     )
     vllm = init_chat_model(
-        model="Qwen/Qwen2-VL-7B-Instruct-AWQ",
+        model="Qwen/Qwen3-14B-AWQ",
         openai_api_base="http://localhost:8005/v1",
         openai_api_key="pranshu123",
         model_provider="openai",
         temperature=0.0,
+        max_tokens=4024,
     )
     
 
