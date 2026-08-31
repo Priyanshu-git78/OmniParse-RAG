@@ -1,218 +1,164 @@
-# 🏗️ Easy Build Multi-Modal RAG Pipeline
+# Industry-Level Multimodal RAG
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://omniparse-rag.streamlit.app/)
+A Streamlit application for ingesting enterprise documents and answering questions with a multimodal retrieval-augmented generation (RAG) workflow. It extracts text, tables, and images from office documents, stores searchable chunks in PostgreSQL with PGVector, then uses hybrid retrieval and reranking to produce grounded answers.
 
-A production-ready, layout-aware Retrieval-Augmented Generation (RAG) pipeline designed for parsing, indexing, and querying complex multi-modal enterprise documents. The pipeline processes nested tables, flowcharts, technical catalogs, and multi-folder corporate repositories, delivering highly grounded answers by combining advanced retrieval methods with vision-capable language models.
+## What it does
 
-This system is built around an **advanced hybrid retrieval and reranking architecture**, leveraging **Streamlit** for the frontend, **LangChain** for orchestration, and **Groq** to access high-performance LLMs (`qwen/qwen3-32b`) for layout summarization, query expansion, and context-aware answer generation.
+- Ingests **PDF, DOCX, PPTX, XLSX, and CSV** files.
+- Uses Unstructured's high-resolution partitioning and title-aware chunking.
+- Preserves raw text, HTML tables, and base64 image payloads with every chunk.
+- Creates LLM-enhanced descriptions for chunks containing tables or images.
+- Stores embeddings from `BAAI/bge-small-en-v1.5` in PostgreSQL/PGVector.
+- Expands each question into three variations, combines MMR vector search with BM25, applies reciprocal-rank fusion, and reranks the result with `BAAI/bge-reranker-base`.
+- Uses Groq as the primary LLM, with OpenRouter and a local vLLM endpoint configured as fallbacks.
 
-* **Live Application:** [omniparse-rag.streamlit.app](https://omniparse-rag.streamlit.app/)
-
----
-
-## 🛠️ Tech Stack & Dependencies
-
-```html
-<p align="left">
-  <img src="https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Frontend-Streamlit-red?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit" />
-  <img src="https://img.shields.io/badge/LLM_Provider-Groq-orange?style=for-the-badge" alt="Groq" />
-  <img src="https://img.shields.io/badge/Embeddings-HuggingFace-yellow?style=for-the-badge" alt="HuggingFace" />
-  <img src="https://img.shields.io/badge/Vector_Store-ChromaDB-blue?style=for-the-badge" alt="ChromaDB" />
-  <img src="https://img.shields.io/badge/Orchestration-LangChain-green?style=for-the-badge&logo=langchain&logoColor=white" alt="LangChain" />
-</p>
-```
-
-| Component | Technology / Model | Role in System | Deployment |
-| :--- | :--- | :--- | :--- |
-| **User Interface** | `Streamlit` | Interactive dashboard with "Easy Build" (pre-indexed search) and "Upload Document" modes | Cloud / Local |
-| **Document Parser** | `Unstructured.io` | Extract layout, text, tables, and images using `hi_res` partitioning | Local |
-| **Orchestration** | `LangChain` | Query expansion, retrieval chains, and LLM orchestration | Local |
-| **Language Model** | `qwen/qwen3-32b` | Chunk summarization, query expansion, and final answer synthesis | Remote (Groq API) |
-| **Vector Store** | `ChromaDB` | Persistent indexing and semantic retrieval | Local / Persistent |
-| **Embeddings** | `BAAI/bge-small-en-v1.5` | Generate vector representations of text chunks | Local (CPU-friendly via HF) |
-| **Reranker** | `BAAI/bge-reranker-base` | Cross-encoder relevance scoring of candidate chunks | Local (CPU-friendly via HF) |
-
----
-
-## ⚙️ Pipeline System Architecture
-
-The architecture is split into two independent, sequential pipelines to ensure structural clarity and layout awareness:
-
-### 1. Document Ingestion & Indexing Pipeline (`ingestion_pipeline.py`)
-
-This pipeline scans document sources (or uploaded files), extracts structural and visual elements, runs layout-aware summaries on image/table-rich blocks, and generates vector indices.
+## Retrieval flow
 
 ```mermaid
-flowchart TD
-    A["Document Source (File/Upload)"] --> B["Unstructured.io Layout Analyzer (hi_res)"]
-    
-    B -->|Extract Text| C["Text Elements"]
-    B -->|Extract Tables| D["HTML Tables"]
-    B -->|Extract Images| E["Base64 Images"]
-    
-    C & D & E --> F["Title-Based Semantic Chunking"]
-    
-    F --> G{"Contains Table or Image?"}
-    
-    G -->|Yes| H["Qwen 32B (via Groq API)"]
-    G -->|No| I["Raw Text Chunk"]
-    
-    H -->|Vision/Layout Analysis| J["AI-Enhanced Semantic Summary"]
-    
-    I & J --> K["Compiled LangChain Documents"]
-    
-    K --> L["HuggingFace Embeddings (bge-small-en-v1.5)"]
-    K --> M["JSON Export (chunks_export.json)"]
-    
-    L --> N[("ChromaDB Vector Store (dbs/chroma)")]
-
-    %% Styling
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
-    classDef process fill:#e1f5fe,stroke:#0288d1,stroke-width:1.5px;
-    classDef database fill:#efebe9,stroke:#5d4037,stroke-width:1.5px;
-    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:1.5px;
-
-    class A,C,D,E,I,J,M default;
-    class B,F,H,K,L process;
-    class G decision;
-    class N database;
+flowchart LR
+    A[Question] --> B[Query expansion]
+    B --> C[MMR vector search]
+    B --> D[BM25 search]
+    C --> E[Reciprocal-rank fusion]
+    D --> E
+    E --> F[Cross-encoder reranking]
+    F --> G[Grounded answer]
+    H[(PostgreSQL + PGVector)] --> C
 ```
 
-### 2. Advanced Multi-Query Retrieval & Synthesis Pipeline (`retrival_methods.py`)
+## Project layout
 
-This pipeline takes the user query, expands it to capture multi-angle context, runs hybrid dense/sparse searches, blends results using Reciprocal Rank Fusion, rerank-compresses candidates, and synthesizes grounded answers while displaying the LLM's thinking process.
-
-```mermaid
-flowchart TD
-    Query["User Query"] --> Expansion["Query Expansion (Qwen 32B via Groq)"]
-    
-    Expansion -->|Generate 3 Variations| Var["Query Variations"]
-    
-    Var --> BM25["BM25 Lexical Search"]
-    Var --> Vector["Chroma Vector Search (MMR)"]
-    
-    DB[("ChromaDB (dbs/chroma)")] -.-> Vector
-    
-    BM25 & Vector --> Ensemble["Ensemble Retriever (0.7 Vector / 0.3 BM25)"]
-    
-    Ensemble --> RRF["Reciprocal Rank Fusion (RRF)"]
-    
-    RRF --> Rerank["Cross-Encoder Reranking (bge-reranker-base)"]
-    
-    Rerank -->|Top 3 Chunks| Compiler["Multi-Modal Context Compiler"]
-    
-    Compiler -->|Text + HTML Tables + Base64 Images| Prompt["Rich Multi-Modal Prompt"]
-    
-    Prompt --> Qwen["Qwen 32B Synthesis (via Groq)"]
-    
-    Qwen --> Output["Factually Grounded Response & Chain-of-Thought"]
-
-    %% Styling
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
-    classDef process fill:#e1f5fe,stroke:#0288d1,stroke-width:1.5px;
-    classDef llm fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1.5px;
-    classDef database fill:#efebe9,stroke:#5d4037,stroke-width:1.5px;
-
-    class Query,Var,Prompt,Output default;
-    class BM25,Vector,Ensemble,RRF,Rerank,Compiler process;
-    class Expansion,Qwen llm;
-    class DB database;
+```text
+src/
+  Config.py                 # Models and LLM fallback configuration
+  ingestion_pipeline.py     # Partition, chunk, enrich, and index documents
+  retrival_methods.py       # Hybrid retrieval, RRF, reranking, and synthesis
+  main.py                   # Streamlit user interface
+datasets/datasets/          # Sample corporate documents
+test/                       # Unit and opt-in integration tests
+packages.txt                # Ubuntu system packages for document parsing
 ```
 
----
+## Prerequisites
 
-## 📂 Enterprise Corpus Structure (`other documents`)
+- Python 3.11+
+- [uv](https://docs.astral.sh/uv/)
+- PostgreSQL with the `pgvector` extension enabled
+- A Groq API key and OpenRouter API key
+- A local vLLM server at `http://localhost:8005/v1` if the final fallback is to be usable
 
-The ingestion pipeline partitions and indexes the structured folders representing various business units and domains:
+For PDF/OCR and office-document parsing, install the system dependencies. On Debian/Ubuntu:
 
-| Directory | Focus / Domain | Description / Content |
-| :--- | :--- | :--- |
-| 📁 `01_company_overview` | Corporate Profile | Executive structures, company history, and key mission statements. |
-| 📁 `02_sales_and_revenue` | Sales & Finances | Revenue dashboards, quarterly sales reports, and figures. |
-| 📁 `03_products_and_catalog` | Product Specifications | Technical brochures, manuals, product catalogs, and dimensions. |
-| 📁 `04_supply_chain_and_warehouses` | Logistics & Operations | Warehouse distribution, dispatch schedules, and inventory tracking. |
-| 📁 `05_customer_support` | Support Databases | Resolution workflows, SLA parameters, and customer-care manuals. |
-| 📁 `06_human_resources` | Personnel & Culture | HR policies, employee handbooks, onboarding guides, and payroll. |
-| 📁 `07_finance_and_procurement` | Procurement & Audits | Vendor relations, purchasing guides, and auditing documentation. |
-| 📁 `08_technology_and_ai` | Engineering & Tools | System architecture sheets, infrastructure tools, and tech stacks. |
-| 📁 `09_policies_and_compliance` | Regulations & Safety | Compliance checklists, safety regulations, and environmental codes. |
-| 📁 `10_projects_and_meetings` | Project Management | Standup logs, sprint goals, meeting notes, and roadmap plans. |
-| 📁 `11_multimodal_documents` | Graphics & Tables | Complex documents containing flowcharts, diagrams, and figures. |
-| 📁 `12_legacy_and_superseded_documents` | Archive & History | Obsolete/superseded catalogs and manuals kept for compliance tracking. |
-| 📁 `13_rag_benchmark_questions` | QA Evaluation | Test query suites designed to assess retrieval accuracy. |
-| 📁 `14_ground_truth_answers` | Validation Baselines | Curated reference answers for assessing retrieval-generation output. |
-| 📁 `15_metadata_and_evaluation` | Performance Metrics | Scoring frameworks and metadata mappings for RAG metrics. |
-
----
-
-## 🎯 Key Pipeline Merits & Implementation Highlights
-
-* **Dual-Mode Streamlit App (`main.py`)**:
-  * **Easy Build**: Direct query interface over the pre-indexed vector knowledge base.
-  * **Upload Document**: Allows uploading standard documents (`PDF`, `DOCX`, `PPTX`, `XLSX`, `CSV`) to parse, chunk, summarize, and index them on-the-fly for real-time querying.
-* **Layout-Aware Partitioning**: Uses the `unstructured` library's `hi_res` strategy to extract text blocks, isolate tabular data as raw HTML tables, and extract visual elements as base64-encoded strings.
-* **Smart Summarization**: Chunks containing tables or images are enhanced by generating an AI summary via `qwen/qwen3-32b` to preserve structural and visual context.
-* **Query Expansion & Hybrid Retrieval**: Expands the user query into 3 variations using structured output from Qwen. Retrieves candidate documents for each variation using an `EnsembleRetriever` combining dense vector search (with **Maximal Marginal Relevance (MMR)** for context diversity) and sparse **BM25** lexical search (weighted `0.7` vector / `0.3` BM25).
-* **Reciprocal Rank Fusion (RRF)**: Blends and re-scores candidates retrieved across all expanded query variations.
-* **Cross-Encoder Reranking**: Re-scores candidates using a local `BAAI/bge-reranker-base` cross-encoder to select the top 3 highest-relevance chunks, avoiding context-window stuffing and reducing LLM inference latency.
-* **Chain-of-Thought (CoT) Visibility**: Automatically captures and displays the model's `<think>` reasoning path inside a Streamlit expander component for complete transparency.
-
----
-
-## 🚀 Setting Up the Environment
-
-### 1. Install System Dependencies
-The extraction pipeline requires Poppler (for PDFs), Tesseract (for OCR), libmagic (for file type identification), LibreOffice (for office doc parsing), and Pandoc.
-
-**Linux (Debian/Ubuntu):**
 ```bash
 sudo apt-get update
-sudo apt-get install -y poppler-utils tesseract-ocr libmagic-dev libreoffice pandoc
+sudo xargs -a packages.txt apt-get install -y
 ```
 
-**macOS:**
-```bash
-brew install poppler tesseract libmagic libreoffice pandoc
-```
+`packages.txt` includes LibreOffice, Pandoc, Tesseract, Poppler, and file-type libraries. macOS users can install the comparable tools with Homebrew (`libreoffice`, `pandoc`, `tesseract`, `poppler`, and `libmagic`).
 
-### 2. Install Python Libraries
-This project uses `uv` for dependency management. Set up a virtual environment and install the required packages:
+## Setup
+
+Install the locked Python environment:
 
 ```bash
-# Create virtual environment and sync packages
-uv venv
-source .venv/bin/activate
-uv pip install -r pyproject.toml
+uv sync
 ```
 
-### 3. Configure Environment Variables
-Create a `.env` file in the root directory of the project and add your Groq API key:
-```env
-GROQ_API_KEY="your-groq-api-key-here"
+Create a `.env` file in the repository root:
+
+```dotenv
+GROQ_API_KEY=your_groq_key
+OPENROUTER_API_KEY=your_openrouter_key
+DATABASE_URL=postgresql+psycopg://username:password@host:5432/database
+
+# Optional: enables LangSmith tracing.
+LANGSMITH_API_KEY=your_langsmith_key
+LANGSMITH_TRACING=true
 ```
 
----
+The connection string must point to a database where the `vector` extension is available. For a local PostgreSQL instance, enable it once:
 
-## 💻 Running the Application & Scripts
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
+```
 
-### Run the Streamlit Web Application
-To run the interactive RAG dashboard:
+> The app builds all three LLM clients during startup, so `GROQ_API_KEY` and `OPENROUTER_API_KEY` must both be set. The vLLM URL and placeholder API key are currently configured in `src/Config.py`.
+
+## Run the app
+
+Start the Streamlit UI from the repository root:
+
 ```bash
-streamlit run main.py
+uv run streamlit run src/main.py
 ```
 
-### Run Standalone Ingestion
-To parse a document manually and build the vector database index:
+The UI has two modes:
+
+- **Easy Build** queries the `DemoRAG` PGVector collection. Ingest documents into that collection before using this mode.
+- **Upload Document** saves the selected file to `uploads/`, creates a UUID-named collection for it, and lets you query it in the same session.
+
+## Ingest and query from Python
+
+The pipeline functions can be called directly. They use Streamlit status widgets, so the Streamlit app is the recommended interface.
+
+```python
+from src.ingestion_pipeline import ingestion_pipeline
+from src.retrival_methods import main_retrival_pipeline
+
+# Index a file or directory into the default collection.
+documents, elapsed = ingestion_pipeline(
+    "datasets/datasets",
+    collection="DemoRAG",
+)
+
+answer, elapsed = main_retrival_pipeline(
+    "Who are the executives?",
+    collection="DemoRAG",
+)
+print(answer)
+```
+
+To run either module manually:
+
 ```bash
-python ingestion_pipeline.py
+uv run python -m src.ingestion_pipeline
+uv run python -m src.retrival_methods
 ```
 
-> [!NOTE]
-> By default, the ingestion script processes documents, extracts their tables/images, generates AI summaries, and stores the persistent collection at `dbs/chroma` while exporting the chunk details to `chunks_export.json`.
+The module defaults are `test_documents` for ingestion and `DemoRAG` for retrieval; direct function calls are preferable when using another input path or collection.
 
-### Run Standalone Retrieval Query
-To run a query in the terminal through the advanced multi-query, hybrid retrieval, RRF, and reranked pipeline:
+## Testing
+
+Run the mocked unit tests:
+
 ```bash
-python retrival_methods.py
+uv run pytest -m "not integration"
 ```
+
+Run integration tests only when a reachable database and live credentials are intentionally available:
+
+```bash
+INTEGRATION=true uv run pytest -m integration
+```
+
+## Operational notes
+
+- The first run downloads the embedding and reranker models from Hugging Face.
+- Ingestion can be slow for image-heavy documents because multimodal chunks are summarized through the LLM.
+- Collections are isolated by name. Keep the collection used at ingestion and retrieval the same.
+- Uploaded files remain in `uploads/`; remove them according to your data-retention requirements.
+- The repository includes synthetic sample documents in `datasets/datasets`. Treat any output as document-grounded assistance and verify important information against the source material.
+
+## Current stack
+
+| Concern | Implementation |
+| --- | --- |
+| UI | Streamlit |
+| Parsing and chunking | Unstructured |
+| Embeddings | `BAAI/bge-small-en-v1.5` |
+| Vector database | PostgreSQL + PGVector |
+| Sparse retrieval | BM25 |
+| Fusion | Reciprocal-rank fusion |
+| Reranking | `BAAI/bge-reranker-base` |
+| LLM routing | Groq → OpenRouter → local vLLM |
+| Observability | LangSmith tracing (optional) |
